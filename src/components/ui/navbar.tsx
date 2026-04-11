@@ -36,8 +36,8 @@ const NAV_ITEMS = [
 
 const dropdownVariants = {
   hidden: { opacity: 0, y: -6 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.2, ease: "easeOut" } },
-  exit: { opacity: 0, y: -6, transition: { duration: 0.15, ease: "easeIn" } },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.2, ease: "easeOut" as const } },
+  exit: { opacity: 0, y: -6, transition: { duration: 0.15, ease: "easeIn" as const } },
 }
 
 function DropdownMenu({ items }: { items: { label: string; href: string }[] }) {

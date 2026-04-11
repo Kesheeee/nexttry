@@ -77,8 +77,7 @@ export function HowItWorks() {
           {/* Connecting line — draws on scroll */}
           <motion.div
             className="hidden md:block absolute top-8 left-[16.67%] right-[16.67%] h-px origin-left"
-            style={{ background: 'linear-gradient(to right, #00b894, #f39c12, #e17055)' }}
-            style={{ scaleX: lineScaleX }}
+            style={{ background: 'linear-gradient(to right, #00b894, #f39c12, #e17055)', scaleX: lineScaleX }}
           />
 
           {steps.map((step, i) => (
