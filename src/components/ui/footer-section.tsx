@@ -61,7 +61,7 @@ export function Footer() {
       <motion.div
         initial={{ scaleX: 0, opacity: 0 }}
         whileInView={{ scaleX: 1, opacity: 1 }}
-        viewport={{ once: false }}
+        viewport={{ once: true }}
         transition={{ duration: 1, ease }}
         className="bg-foreground/20 absolute top-0 right-1/2 left-1/2 h-px w-1/3 -translate-x-1/2 -translate-y-1/2 rounded-full blur origin-center"
       />
@@ -71,14 +71,14 @@ export function Footer() {
         <motion.div
           initial={shouldReduceMotion ? {} : { opacity: 0, y: 24, filter: 'blur(4px)' }}
           whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
-          viewport={{ once: false }}
+          viewport={{ once: true }}
           transition={{ duration: 0.6, ease }}
           className="space-y-4"
         >
           <motion.p
             initial={shouldReduceMotion ? {} : { opacity: 0 }}
             whileInView={{ opacity: 1 }}
-            viewport={{ once: false }}
+            viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.1, ease }}
             className="text-muted-foreground text-sm leading-relaxed max-w-xs"
           >
@@ -87,7 +87,7 @@ export function Footer() {
           <motion.p
             initial={shouldReduceMotion ? {} : { opacity: 0 }}
             whileInView={{ opacity: 1 }}
-            viewport={{ once: false }}
+            viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.2, ease }}
             className="text-muted-foreground text-sm"
           >
@@ -102,7 +102,7 @@ export function Footer() {
               key={section.label}
               initial={shouldReduceMotion ? {} : { opacity: 0, y: 20, filter: 'blur(4px)' }}
               whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
-              viewport={{ once: false }}
+              viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.1 + sectionIndex * 0.1, ease }}
               className="mb-10 md:mb-0"
             >
@@ -110,7 +110,7 @@ export function Footer() {
               <motion.h3
                 initial={shouldReduceMotion ? {} : { opacity: 0, x: -10 }}
                 whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: false }}
+                viewport={{ once: true }}
                 transition={{ duration: 0.4, delay: 0.15 + sectionIndex * 0.1, ease }}
                 className="text-xs font-semibold text-foreground tracking-widest uppercase"
               >
@@ -124,7 +124,7 @@ export function Footer() {
                     key={link.title}
                     initial={shouldReduceMotion ? {} : { opacity: 0, x: -12 }}
                     whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: false }}
+                    viewport={{ once: true }}
                     transition={{
                       duration: 0.35,
                       delay: 0.2 + sectionIndex * 0.1 + linkIndex * 0.05,

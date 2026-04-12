@@ -41,7 +41,7 @@ export function CTASection() {
               className="inline-block mr-[0.3em]"
               initial={{ opacity: 0, y: 40, filter: 'blur(8px)', rotateX: 45 }}
               whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)', rotateX: 0 }}
-              viewport={{ once: false, amount: 0.5 }}
+              viewport={{ once: true, amount: 0.5 }}
               transition={{
                 duration: 0.6,
                 delay: i * 0.08,
@@ -57,7 +57,7 @@ export function CTASection() {
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: false }}
+          viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.4, ease: [0.25, 0.46, 0.45, 0.94] }}
           className="text-muted-foreground text-lg max-w-lg"
         >
@@ -68,7 +68,7 @@ export function CTASection() {
         <motion.div
           initial={{ opacity: 0, y: 30, scale: 0.9 }}
           whileInView={{ opacity: 1, y: 0, scale: 1 }}
-          viewport={{ once: false }}
+          viewport={{ once: true }}
           transition={{
             duration: 0.5,
             delay: 0.55,

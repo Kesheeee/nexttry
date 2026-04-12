@@ -114,7 +114,7 @@ export function SocialProof() {
           <motion.div
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: false }}
+            viewport={{ once: true }}
             transition={{ duration: 0.5, ease }}
             className="border py-1 px-4 rounded-lg text-xs font-semibold uppercase tracking-widest text-primary"
           >
@@ -127,7 +127,7 @@ export function SocialProof() {
                 className="inline-block mr-[0.3em]"
                 initial={{ opacity: 0, y: 30, filter: 'blur(6px)' }}
                 whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
-                viewport={{ once: false }}
+                viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: 0.1 + i * 0.06, ease }}
               >
                 {word}
@@ -137,7 +137,7 @@ export function SocialProof() {
           <motion.p
             initial={{ opacity: 0, y: 12 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: false }}
+            viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.4, ease }}
             className="mt-4 text-muted-foreground"
           >

@@ -53,7 +53,7 @@ export function WhatWeOffer() {
           <motion.p
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: false }}
+            viewport={{ once: true }}
             transition={{ duration: 0.5, ease }}
             className="text-xs font-semibold uppercase tracking-widest text-primary mb-3"
           >
@@ -66,7 +66,7 @@ export function WhatWeOffer() {
                 className="inline-block mr-[0.3em]"
                 initial={{ opacity: 0, y: 30, filter: 'blur(6px)' }}
                 whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
-                viewport={{ once: false }}
+                viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: i * 0.05, ease }}
               >
                 {word}
@@ -82,7 +82,7 @@ export function WhatWeOffer() {
               <motion.div
                 initial={{ opacity: 0, y: 60 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: false, amount: 0.15 }}
+                viewport={{ once: true, amount: 0.15 }}
                 transition={{ duration: 0.7, delay: i * 0.15, ease }}
                 className="rounded-3xl border border-border bg-background overflow-hidden hover:border-primary/30 hover:shadow-xl hover:shadow-primary/5 transition-all duration-300"
               >
@@ -94,7 +94,7 @@ export function WhatWeOffer() {
                     className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-500"
                     initial={{ scale: 1.1, filter: 'blur(4px)' }}
                     whileInView={{ scale: 1, filter: 'blur(0px)' }}
-                    viewport={{ once: false, amount: 0.3 }}
+                    viewport={{ once: true, amount: 0.3 }}
                     transition={{ duration: 0.8, delay: i * 0.15 + 0.1, ease }}
                   />
                 </div>
@@ -105,7 +105,7 @@ export function WhatWeOffer() {
                   <motion.div
                     initial={{ opacity: 0, x: -16 }}
                     whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: false }}
+                    viewport={{ once: true }}
                     transition={{ duration: 0.4, delay: i * 0.15 + 0.2, ease }}
                     className="flex items-center gap-2.5"
                   >
@@ -121,7 +121,7 @@ export function WhatWeOffer() {
                   <motion.h3
                     initial={{ opacity: 0, y: 16, filter: 'blur(4px)' }}
                     whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
-                    viewport={{ once: false }}
+                    viewport={{ once: true }}
                     transition={{ duration: 0.5, delay: i * 0.15 + 0.3, ease }}
                     className="text-xl font-bold tracking-tight transition-colors duration-200"
                     whileHover={{ color: offer.accent }}
@@ -133,7 +133,7 @@ export function WhatWeOffer() {
                   <motion.p
                     initial={{ opacity: 0, y: 12 }}
                     whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: false }}
+                    viewport={{ once: true }}
                     transition={{ duration: 0.4, delay: i * 0.15 + 0.4, ease }}
                     className="text-sm text-muted-foreground leading-relaxed"
                   >
@@ -144,7 +144,7 @@ export function WhatWeOffer() {
                   <motion.div
                     initial={{ opacity: 0, x: -10 }}
                     whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: false }}
+                    viewport={{ once: true }}
                     transition={{ duration: 0.4, delay: i * 0.15 + 0.5, ease }}
                     className="flex items-center gap-1.5 text-sm font-medium group-hover:gap-3 transition-all duration-200 mt-auto"
                     style={{ color: offer.accent }}

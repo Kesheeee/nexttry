@@ -18,7 +18,7 @@ function SplitText({ text, className, delay = 0 }: { text: string; className?: s
           className="inline-block"
           initial={{ opacity: 0, y: 20, filter: 'blur(4px)' }}
           whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
-          viewport={{ once: false, amount: 0.5 }}
+          viewport={{ once: true, amount: 0.5 }}
           transition={{
             duration: 0.4,
             delay: delay + i * 0.02,
@@ -61,7 +61,7 @@ export function HowItWorks() {
           <motion.p
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: false }}
+            viewport={{ once: true }}
             transition={{ duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] }}
             className="text-xs font-semibold uppercase tracking-widest text-primary mb-3"
           >
@@ -85,7 +85,7 @@ export function HowItWorks() {
               key={step.title}
               initial={{ opacity: 0, y: 60, filter: 'blur(6px)' }}
               whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
-              viewport={{ once: false, amount: 0.2 }}
+              viewport={{ once: true, amount: 0.2 }}
               transition={{
                 duration: 0.7,
                 delay: i * 0.2,
@@ -97,7 +97,7 @@ export function HowItWorks() {
               <motion.div
                 initial={{ scale: 0, rotate: -45 }}
                 whileInView={{ scale: 1, rotate: 0 }}
-                viewport={{ once: false, amount: 0.3 }}
+                viewport={{ once: true, amount: 0.3 }}
                 transition={{
                   duration: 0.6,
                   delay: i * 0.2 + 0.1,
@@ -114,7 +114,7 @@ export function HowItWorks() {
               <motion.span
                 initial={{ opacity: 0, scale: 0.5 }}
                 whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: false }}
+                viewport={{ once: true }}
                 transition={{ duration: 0.4, delay: i * 0.2 + 0.2 }}
                 className="text-xs font-bold tracking-widest"
                 style={{ color: step.accent }}
@@ -127,7 +127,7 @@ export function HowItWorks() {
               <motion.p
                 initial={{ opacity: 0, y: 10 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: false }}
+                viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: i * 0.2 + 0.3, ease: [0.25, 0.46, 0.45, 0.94] }}
                 className="text-sm text-muted-foreground leading-relaxed max-w-xs"
               >

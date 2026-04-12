@@ -46,7 +46,7 @@ function StageStrip({ stage, index }: { stage: Stage; index: number }) {
       <motion.div
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
-        viewport={{ once: false, amount: 0.2 }}
+        viewport={{ once: true, amount: 0.2 }}
         transition={{ duration: 1 }}
         className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/40 to-transparent"
       />
@@ -55,7 +55,7 @@ function StageStrip({ stage, index }: { stage: Stage; index: number }) {
       <motion.span
         initial={{ opacity: 0, scale: 0.5, filter: 'blur(10px)' }}
         whileInView={{ opacity: 0.12, scale: 1, filter: 'blur(0px)' }}
-        viewport={{ once: false, amount: 0.3 }}
+        viewport={{ once: true, amount: 0.3 }}
         transition={{ duration: 0.8, delay: 0.05 }}
         className="absolute top-6 right-10 md:right-16 text-[120px] md:text-[180px] font-extrabold text-white leading-none select-none pointer-events-none"
       >
@@ -67,7 +67,7 @@ function StageStrip({ stage, index }: { stage: Stage; index: number }) {
         <motion.h3
           initial={{ opacity: 0, y: 50, filter: 'blur(8px)' }}
           whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
-          viewport={{ once: false, amount: 0.3 }}
+          viewport={{ once: true, amount: 0.3 }}
           transition={{ duration: 0.7, delay: 0.1 + index * 0.03 }}
           className="text-3xl md:text-4xl font-extrabold text-white tracking-tight mb-2"
         >
@@ -78,7 +78,7 @@ function StageStrip({ stage, index }: { stage: Stage; index: number }) {
         <motion.p
           initial={{ opacity: 0, x: -20 }}
           whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: false, amount: 0.3 }}
+          viewport={{ once: true, amount: 0.3 }}
           transition={{ duration: 0.6, delay: 0.3 + index * 0.03 }}
           className="text-base md:text-lg text-white/70 font-medium"
         >
@@ -89,7 +89,7 @@ function StageStrip({ stage, index }: { stage: Stage; index: number }) {
         <motion.div
           initial={{ scaleX: 0 }}
           whileInView={{ scaleX: 1 }}
-          viewport={{ once: false, amount: 0.3 }}
+          viewport={{ once: true, amount: 0.3 }}
           transition={{ duration: 0.8, delay: 0.5 + index * 0.03 }}
           className="h-0.5 w-24 mt-4 origin-left"
           style={{ backgroundColor: stage.accent }}
@@ -180,7 +180,7 @@ export function InteractiveSelector() {
               <motion.div
                 initial={{ opacity: 0, scale: 0 }}
                 whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: false }}
+                viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: 0.2 + i * 0.1 }}
                 className="relative group cursor-default"
               >
@@ -204,7 +204,7 @@ export function InteractiveSelector() {
             <motion.span
               initial={{ opacity: 0, y: 30, filter: 'blur(6px)' }}
               whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
-              viewport={{ once: false }}
+              viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0 }}
               className="inline-block"
             >
@@ -213,7 +213,7 @@ export function InteractiveSelector() {
             <motion.span
               initial={{ opacity: 0, y: 30, filter: 'blur(6px)' }}
               whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
-              viewport={{ once: false }}
+              viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.1 }}
               className="inline-block"
             >
@@ -222,7 +222,7 @@ export function InteractiveSelector() {
             <motion.span
               initial={{ opacity: 0, y: 30, filter: 'blur(6px)' }}
               whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
-              viewport={{ once: false }}
+              viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.2 }}
               className="inline-block"
             >
@@ -231,7 +231,7 @@ export function InteractiveSelector() {
             <motion.span
               initial={{ opacity: 0, y: 30, filter: 'blur(6px)', scale: 0.9 }}
               whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)', scale: 1 }}
-              viewport={{ once: false }}
+              viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.35, type: 'spring', bounce: 0.3 }}
               className="inline-block text-primary"
             >
@@ -240,7 +240,7 @@ export function InteractiveSelector() {
             <motion.span
               initial={{ opacity: 0, y: 30, filter: 'blur(6px)' }}
               whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
-              viewport={{ once: false }}
+              viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.45 }}
               className="inline-block"
             >
