@@ -1,6 +1,6 @@
 'use client';
 
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { useRef } from 'react';
 import { useLanguage } from '@/components/ui/language-context';
 
@@ -13,15 +13,6 @@ interface Stage {
 
 function StageStrip({ stage, index }: { stage: Stage; index: number }) {
   const ref = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ['start end', 'end start'],
-  });
-
-  // Parallax: image moves slower than scroll
-  const imageY = useTransform(scrollYProgress, [0, 1], ['0%', '20%']);
-  // Image zooms in slightly as it enters
-  const imageScale = useTransform(scrollYProgress, [0, 0.5], [1.15, 1]);
 
   return (
     <motion.div
@@ -29,16 +20,14 @@ function StageStrip({ stage, index }: { stage: Stage; index: number }) {
       className="relative w-full overflow-hidden"
       style={{ height: '500px' }}
     >
-      {/* Background image — parallax + zoom */}
-      <motion.div
+      {/* Background image */}
+      <div
         className="absolute inset-0"
         style={{
           backgroundImage: `url('${stage.image}')`,
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           backgroundColor: '#111',
-          y: imageY,
-          scale: imageScale,
         }}
       />
 

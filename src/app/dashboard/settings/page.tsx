@@ -51,6 +51,41 @@ export default function SettingsPage() {
   const router = useRouter();
   const [activeTab, setActiveTab] = useState<'privacy' | 'billing'>('privacy');
   const [isYearly, setIsYearly] = useState(false);
+  const [loadingPlan, setLoadingPlan] = useState<string | null>(null);
+
+  const handleUpgrade = async (planKey: 'starter' | 'pro') => {
+    setLoadingPlan(planKey);
+    try {
+      const res = await fetch('/api/billing/checkout', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ plan: planKey }),
+      });
+      const { data, error } = await res.json();
+      if (error) {
+        alert(error.message || 'Something went wrong');
+        return;
+      }
+      if (data?.url) window.location.href = data.url;
+    } finally {
+      setLoadingPlan(null);
+    }
+  };
+
+  const handleManageBilling = async () => {
+    setLoadingPlan('portal');
+    try {
+      const res = await fetch('/api/billing/portal', { method: 'POST' });
+      const { data, error } = await res.json();
+      if (error) {
+        alert(error.message || 'Something went wrong');
+        return;
+      }
+      if (data?.url) window.location.href = data.url;
+    } finally {
+      setLoadingPlan(null);
+    }
+  };
   const [profileVisibility, setProfileVisibility] = useState('public');
   const [emailNotifications, setEmailNotifications] = useState(true);
   const [eventReminders, setEventReminders] = useState(true);
@@ -298,16 +333,21 @@ export default function SettingsPage() {
                       </ul>
 
                       <button
+                        onClick={() => !plan.current && handleUpgrade(plan.name.toLowerCase() as 'starter' | 'pro')}
                         className={`mt-auto rounded-full py-3 text-sm font-medium transition-all duration-200 flex items-center justify-center gap-2 ${
                           plan.current
                             ? 'bg-muted text-muted-foreground cursor-default'
                             : plan.popular
                             ? 'bg-primary text-primary-foreground hover:bg-primary/90 active:scale-[0.97]'
                             : 'bg-foreground text-background hover:opacity-80 active:scale-[0.97]'
-                        }`}
-                        disabled={plan.current}
+                        } disabled:opacity-50 disabled:pointer-events-none`}
+                        disabled={plan.current || loadingPlan !== null}
                       >
-                        {plan.current ? 'Current Plan' : <>Upgrade <ArrowRight className="w-3.5 h-3.5" /></>}
+                        {plan.current
+                          ? 'Current Plan'
+                          : loadingPlan === plan.name.toLowerCase()
+                          ? 'Redirecting...'
+                          : <>Upgrade <ArrowRight className="w-3.5 h-3.5" /></>}
                       </button>
                     </motion.div>
                   );
@@ -320,9 +360,13 @@ export default function SettingsPage() {
                   <CreditCard className="w-5 h-5 text-primary" strokeWidth={1.5} />
                   <h2 className="text-lg font-bold tracking-tight">Payment Method</h2>
                 </div>
-                <p className="text-sm text-muted-foreground mb-4">No payment method on file.</p>
-                <button className="flex items-center gap-1.5 text-sm font-medium text-primary hover:gap-3 transition-all duration-200">
-                  + Add payment method <ArrowRight className="w-3.5 h-3.5" />
+                <p className="text-sm text-muted-foreground mb-4">Manage your payment methods, invoices, and subscription through Stripe's secure portal.</p>
+                <button
+                  onClick={handleManageBilling}
+                  disabled={loadingPlan === 'portal'}
+                  className="flex items-center gap-1.5 text-sm font-medium text-primary hover:gap-3 transition-all duration-200 disabled:opacity-50"
+                >
+                  {loadingPlan === 'portal' ? 'Opening...' : <>Manage billing <ArrowRight className="w-3.5 h-3.5" /></>}
                 </button>
               </div>
 

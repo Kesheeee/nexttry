@@ -23,6 +23,7 @@ export default function GOLnextPage() {
   interface Message { id: string; role: 'user' | 'assistant'; content: string; createdAt: Date; }
   const [messages, setMessages] = useState<Message[]>([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [conversationId, setConversationId] = useState<string | null>(null);
   const hasStarted = messages.length > 0;
 
   useEffect(() => {
@@ -33,17 +34,34 @@ export default function GOLnextPage() {
     if (!message.trim() || isLoading) return;
 
     const userMsg: Message = { id: Date.now().toString(), role: 'user', content: message, createdAt: new Date() };
-    const newMessages = [...messages, userMsg];
-    setMessages(newMessages);
+    setMessages(prev => [...prev, userMsg]);
     setIsLoading(true);
 
     try {
-      const res = await fetch('/api/chat', {
+      // Create conversation on first message
+      let convId = conversationId;
+      if (!convId) {
+        const cRes = await fetch('/api/conversations', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({}),
+        });
+        if (cRes.ok) {
+          const { data } = await cRes.json();
+          convId = data.id;
+          setConversationId(data.id);
+        }
+      }
+
+      const endpoint = convId ? `/api/conversations/${convId}/messages` : '/api/chat';
+      const payload = convId
+        ? { content: message }
+        : { messages: [...messages, userMsg].map(m => ({ role: m.role, content: m.content })) };
+
+      const res = await fetch(endpoint, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          messages: newMessages.map(m => ({ role: m.role, content: m.content })),
-        }),
+        body: JSON.stringify(payload),
       });
 
       if (!res.ok) throw new Error('API error');

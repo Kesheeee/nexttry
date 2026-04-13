@@ -39,8 +39,8 @@ export function CTASection() {
             <motion.span
               key={i}
               className="inline-block mr-[0.3em]"
-              initial={{ opacity: 0, y: 40, filter: 'blur(8px)', rotateX: 45 }}
-              whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)', rotateX: 0 }}
+              initial={{ opacity: 0, y: 15, rotateX: 45 }}
+              whileInView={{ opacity: 1, y: 0, rotateX: 0 }}
               viewport={{ once: true, amount: 0.5 }}
               transition={{
                 duration: 0.6,
@@ -66,7 +66,7 @@ export function CTASection() {
 
         {/* Button — slides up with scale */}
         <motion.div
-          initial={{ opacity: 0, y: 30, scale: 0.9 }}
+          initial={{ opacity: 0, y: 12, scale: 0.9 }}
           whileInView={{ opacity: 1, y: 0, scale: 1 }}
           viewport={{ once: true }}
           transition={{

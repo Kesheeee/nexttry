@@ -64,8 +64,8 @@ export function WhatWeOffer() {
               <motion.span
                 key={i}
                 className="inline-block mr-[0.3em]"
-                initial={{ opacity: 0, y: 30, filter: 'blur(6px)' }}
-                whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+                initial={{ opacity: 0, y: 12 }}
+                whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: i * 0.05, ease }}
               >
@@ -80,7 +80,7 @@ export function WhatWeOffer() {
           {offers.map((offer, i) => (
             <Link key={offer.title} href={offer.href} className="group block">
               <motion.div
-                initial={{ opacity: 0, y: 60 }}
+                initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.15 }}
                 transition={{ duration: 0.7, delay: i * 0.15, ease }}
@@ -92,8 +92,8 @@ export function WhatWeOffer() {
                     src={offer.image}
                     alt={offer.title}
                     className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-500"
-                    initial={{ scale: 1.1, filter: 'blur(4px)' }}
-                    whileInView={{ scale: 1, filter: 'blur(0px)' }}
+                    initial={{ scale: 1.1 }}
+                    whileInView={{ scale: 1 }}
                     viewport={{ once: true, amount: 0.3 }}
                     transition={{ duration: 0.8, delay: i * 0.15 + 0.1, ease }}
                   />
@@ -103,7 +103,7 @@ export function WhatWeOffer() {
                 <div className="p-6 flex flex-col gap-4">
                   {/* Icon + subtitle */}
                   <motion.div
-                    initial={{ opacity: 0, x: -16 }}
+                    initial={{ opacity: 0, x: -8 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.4, delay: i * 0.15 + 0.2, ease }}
@@ -119,8 +119,8 @@ export function WhatWeOffer() {
 
                   {/* Title */}
                   <motion.h3
-                    initial={{ opacity: 0, y: 16, filter: 'blur(4px)' }}
-                    whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+                    initial={{ opacity: 0, y: 16 }}
+                    whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.5, delay: i * 0.15 + 0.3, ease }}
                     className="text-xl font-bold tracking-tight transition-colors duration-200"

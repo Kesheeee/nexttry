@@ -69,8 +69,8 @@ export function Footer() {
       <div className="grid w-full max-w-7xl mx-auto gap-8 xl:grid-cols-3 xl:gap-8">
         {/* Brand — slides up */}
         <motion.div
-          initial={shouldReduceMotion ? {} : { opacity: 0, y: 24, filter: 'blur(4px)' }}
-          whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+          initial={shouldReduceMotion ? {} : { opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, ease }}
           className="space-y-4"
@@ -100,8 +100,8 @@ export function Footer() {
           {footerLinks.map((section, sectionIndex) => (
             <motion.div
               key={section.label}
-              initial={shouldReduceMotion ? {} : { opacity: 0, y: 20, filter: 'blur(4px)' }}
-              whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+              initial={shouldReduceMotion ? {} : { opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.1 + sectionIndex * 0.1, ease }}
               className="mb-10 md:mb-0"
@@ -122,7 +122,7 @@ export function Footer() {
                 {section.links.map((link, linkIndex) => (
                   <motion.li
                     key={link.title}
-                    initial={shouldReduceMotion ? {} : { opacity: 0, x: -12 }}
+                    initial={shouldReduceMotion ? {} : { opacity: 0, x: -6 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true }}
                     transition={{

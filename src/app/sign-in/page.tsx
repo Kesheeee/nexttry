@@ -40,7 +40,7 @@ export default function SignInRoute() {
           router.push('/dashboard');
         }}
         onGoogleSignIn={() => {
-          signIn('google', { callbackUrl: '/dashboard' });
+          signIn('google', { callbackUrl: '/onboarding' });
         }}
         onResetPassword={() => {}}
         onCreateAccount={() => router.push('/create-account')}

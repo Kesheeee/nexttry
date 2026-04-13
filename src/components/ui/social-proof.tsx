@@ -125,8 +125,8 @@ export function SocialProof() {
               <motion.span
                 key={i}
                 className="inline-block mr-[0.3em]"
-                initial={{ opacity: 0, y: 30, filter: 'blur(6px)' }}
-                whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+                initial={{ opacity: 0, y: 12 }}
+                whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: 0.1 + i * 0.06, ease }}
               >

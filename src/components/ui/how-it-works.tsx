@@ -16,8 +16,8 @@ function SplitText({ text, className, delay = 0 }: { text: string; className?: s
         <motion.span
           key={i}
           className="inline-block"
-          initial={{ opacity: 0, y: 20, filter: 'blur(4px)' }}
-          whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.5 }}
           transition={{
             duration: 0.4,
@@ -83,8 +83,8 @@ export function HowItWorks() {
           {steps.map((step, i) => (
             <motion.div
               key={step.title}
-              initial={{ opacity: 0, y: 60, filter: 'blur(6px)' }}
-              whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.2 }}
               transition={{
                 duration: 0.7,
