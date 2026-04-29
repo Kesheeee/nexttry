@@ -84,22 +84,6 @@ function ContactForm() {
             </div>
 
             <div className="flex flex-col gap-1.5">
-              <label htmlFor="contact-interest" className="text-sm font-medium text-foreground">
-                I'm interested in <span className="text-primary">*</span>
-              </label>
-              <div className="border-b border-border focus-within:border-primary transition-colors">
-                <select id="contact-interest" name="interest" required defaultValue="" className="w-full bg-transparent text-sm py-2 focus:outline-none text-muted-foreground cursor-pointer">
-                  <option value="" disabled>Please Select</option>
-                  <option value="mentorship">Mentorship</option>
-                  <option value="programs">Programs</option>
-                  <option value="events">Events</option>
-                  <option value="partnership">Partnership</option>
-                  <option value="other">Other</option>
-                </select>
-              </div>
-            </div>
-
-            <div className="flex flex-col gap-1.5">
               <label htmlFor="contact-source" className="text-sm font-medium text-foreground">
                 Where did you hear about us?
               </label>

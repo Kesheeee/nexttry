@@ -345,37 +345,6 @@ export function InteractiveSelector() {
                   </div>
                 </div>
 
-                {/* Story card */}
-                <figure
-                  className="m-0 mt-auto"
-                  style={{
-                    padding: "18px",
-                    background: accent.bg,
-                    border: `1px solid ${accent.ring}`,
-                    borderRadius: 14,
-                  }}
-                >
-                  <blockquote
-                    className="m-0 font-serif italic"
-                    style={{
-                      fontSize: 14.5,
-                      lineHeight: 1.5,
-                      color: "var(--ink)",
-                    }}
-                  >
-                    &ldquo;{stage.storyText}&rdquo;
-                  </blockquote>
-                  <figcaption
-                    className="mt-2.5 font-medium"
-                    style={{
-                      fontSize: 12,
-                      letterSpacing: "0.05em",
-                      color: "var(--ink-2)",
-                    }}
-                  >
-                    — {stage.storyName}
-                  </figcaption>
-                </figure>
               </div>
             </div>
           </div>
