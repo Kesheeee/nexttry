@@ -1,241 +1,413 @@
-'use client';
+"use client";
 
-import { motion } from 'framer-motion';
-import { useRef } from 'react';
-import { useLanguage } from '@/components/ui/language-context';
+import { useState } from "react";
+import { ChevronRight, Quote, Check, Sparkles, Mic, Users } from "lucide-react";
+import { STAGES, ACCENT_HEX, PRODUCTS, type ProductId } from "@/lib/site-data";
 
-interface Stage {
-  title: string;
-  tagline: string;
-  image: string;
-  accent: string;
-}
+const productIcons: Record<"spark" | "mic" | "users", typeof Sparkles> = {
+  spark: Sparkles,
+  mic: Mic,
+  users: Users,
+};
 
-function StageStrip({ stage, index }: { stage: Stage; index: number }) {
-  const ref = useRef<HTMLDivElement>(null);
-
+function ProductPill({ id }: { id: ProductId }) {
+  const p = PRODUCTS[id];
+  const Icon = productIcons[p.icon];
+  const accent = ACCENT_HEX[p.color];
   return (
-    <motion.div
-      ref={ref}
-      className="relative w-full overflow-hidden"
-      style={{ height: '500px' }}
+    <a
+      href={p.href}
+      target={p.external ? "_blank" : undefined}
+      rel={p.external ? "noopener noreferrer" : undefined}
+      className="inline-flex items-center gap-2 transition-all duration-150 hover:opacity-80"
+      style={{
+        padding: "6px 12px 6px 8px",
+        borderRadius: 999,
+        background: "var(--paper)",
+        border: "1px solid var(--line)",
+        fontSize: 13,
+        color: "var(--ink)",
+      }}
     >
-      {/* Background image */}
-      <div
-        className="absolute inset-0"
+      <span
+        className="inline-flex items-center justify-center"
         style={{
-          backgroundImage: `url('${stage.image}')`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          backgroundColor: '#111',
+          width: 22,
+          height: 22,
+          borderRadius: 6,
+          background: accent.bg,
+          color: accent.fg,
         }}
-      />
-
-      {/* Dark overlay — fades in */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        viewport={{ once: true, amount: 0.2 }}
-        transition={{ duration: 1 }}
-        className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/40 to-transparent"
-      />
-
-      {/* Counter — top right */}
-      <motion.span
-        initial={{ opacity: 0, scale: 0.5, filter: 'blur(10px)' }}
-        whileInView={{ opacity: 0.12, scale: 1, filter: 'blur(0px)' }}
-        viewport={{ once: true, amount: 0.3 }}
-        transition={{ duration: 0.8, delay: 0.05 }}
-        className="absolute top-6 right-10 md:right-16 text-[120px] md:text-[180px] font-extrabold text-white leading-none select-none pointer-events-none"
       >
-        {String(index + 1).padStart(2, '0')}
-      </motion.span>
-
-      {/* Title — slides up with blur */}
-      <div className="absolute inset-0 flex flex-col justify-end p-10 md:p-16">
-        <motion.h3
-          initial={{ opacity: 0, y: 50, filter: 'blur(8px)' }}
-          whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
-          viewport={{ once: true, amount: 0.3 }}
-          transition={{ duration: 0.7, delay: 0.1 + index * 0.03 }}
-          className="text-3xl md:text-4xl font-extrabold text-white tracking-tight mb-2"
-        >
-          {stage.title}
-        </motion.h3>
-
-        {/* Tagline — fades in after title */}
-        <motion.p
-          initial={{ opacity: 0, x: -20 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true, amount: 0.3 }}
-          transition={{ duration: 0.6, delay: 0.3 + index * 0.03 }}
-          className="text-base md:text-lg text-white/70 font-medium"
-        >
-          {stage.tagline}
-        </motion.p>
-
-        {/* Animated underline */}
-        <motion.div
-          initial={{ scaleX: 0 }}
-          whileInView={{ scaleX: 1 }}
-          viewport={{ once: true, amount: 0.3 }}
-          transition={{ duration: 0.8, delay: 0.5 + index * 0.03 }}
-          className="h-0.5 w-24 mt-4 origin-left"
-          style={{ backgroundColor: stage.accent }}
-        />
-      </div>
-    </motion.div>
+        <Icon size={13} strokeWidth={2} />
+      </span>
+      {p.name}
+    </a>
   );
 }
 
 export function InteractiveSelector() {
-  const { t } = useLanguage();
-
-  const stages: Stage[] = [
-    {
-      title: t('stage.secondary'),
-      tagline: t('stage.secondaryTag'),
-      image: '/stages/secondary-school.jpg',
-      accent: '#f39c12',  // amber
-    },
-    {
-      title: t('stage.university'),
-      tagline: t('stage.universityTag'),
-      image: '/stages/university.jpg',
-      accent: '#00b894',  // teal
-    },
-    {
-      title: t('stage.earlyCareer'),
-      tagline: t('stage.earlyCareerTag'),
-      image: '/stages/early-career.jpg',
-      accent: '#6c5ce7',  // purple (primary)
-    },
-    {
-      title: t('stage.careerChange'),
-      tagline: t('stage.careerChangeTag'),
-      image: '/stages/career-change.jpg',
-      accent: '#e17055',  // coral
-    },
-    {
-      title: t('stage.retired'),
-      tagline: t('stage.retiredTag'),
-      image: '/stages/retired.jpg',
-      accent: '#fab1a0',  // rose
-    },
-  ];
+  const [active, setActive] = useState<string>("uni");
+  const stage = STAGES.find((s) => s.id === active) ?? STAGES[1];
+  const accent = ACCENT_HEX[stage.accent];
 
   return (
-    <section id="life-stages" className="w-full">
-      {/* 5 strips */}
-      {stages.map((stage, index) => (
-        <StageStrip key={stage.title} stage={stage} index={index} />
-      ))}
-
-      {/* Gradient bridge — dark strips to light background */}
-      <div className="w-full h-32 bg-gradient-to-b from-[#111] to-background" />
-
-      {/* Closing — orbiting bubbles */}
-      <div className="relative w-full h-screen flex items-center justify-center overflow-hidden bg-background -mt-32">
-        {/* Background glow */}
-        <div className="pointer-events-none absolute inset-0 overflow-hidden">
-          <div className="absolute top-1/4 right-1/4 w-[500px] h-[500px] rounded-full bg-primary/15 blur-[120px]" />
-          <div className="absolute bottom-1/4 left-1/4 w-[400px] h-[400px] rounded-full bg-indigo-400/15 blur-[100px]" />
+    <section
+      id="stages"
+      className="border-b"
+      style={{
+        borderColor: "var(--line)",
+        background: "var(--paper)",
+        paddingBlock: 110,
+        paddingInline: 28,
+      }}
+    >
+      <div className="max-w-[1240px] mx-auto">
+        {/* Heading */}
+        <div className="flex items-end justify-between flex-wrap gap-6 mb-14">
+          <div className="max-w-[720px]">
+            <div
+              className="font-mono inline-flex items-center gap-2.5 mb-4"
+              style={{
+                fontSize: 11,
+                letterSpacing: "0.18em",
+                textTransform: "uppercase",
+                color: "var(--ink-3)",
+              }}
+            >
+              <span style={{ width: 24, height: 1, background: "var(--ink-3)" }} />
+              01 — Find your stage
+            </div>
+            <h2
+              className="m-0"
+              style={{
+                fontSize: "clamp(36px, 4.6vw, 64px)",
+                lineHeight: 1.0,
+                letterSpacing: "-0.025em",
+                fontWeight: 500,
+                color: "var(--ink)",
+                textWrap: "balance" as const,
+              }}
+            >
+              The questions change.
+              <br />
+              <span className="italic" style={{ fontFamily: "var(--font-display)", fontWeight: 400 }}>
+                The need for a guide doesn&apos;t.
+              </span>
+            </h2>
+          </div>
+          <p
+            className="m-0 max-w-[360px]"
+            style={{ color: "var(--ink-2)", fontSize: 15, lineHeight: 1.55 }}
+          >
+            Pick the chapter you&apos;re in. We&apos;ll show you what people actually wrestle with there
+            — and how NextTry helps.
+          </p>
         </div>
 
-        {/* Orbiting bubbles */}
-        {stages.map((stage, i) => {
-          const angle = (i / stages.length) * 360;
-          const colors = stages.map(s => s.accent);
-          const sizes = [44, 36, 40, 32, 38];
-          const radius = 280;
-
-          return (
-            <motion.div
-              key={stage.title}
-              className="absolute"
-              style={{ width: sizes[i], height: sizes[i] }}
-              animate={{
-                x: [
-                  Math.cos((angle * Math.PI) / 180) * radius,
-                  Math.cos(((angle + 360) * Math.PI) / 180) * radius,
-                ],
-                y: [
-                  Math.sin((angle * Math.PI) / 180) * radius,
-                  Math.sin(((angle + 360) * Math.PI) / 180) * radius,
-                ],
-              }}
-              transition={{ duration: 20 + i * 3, repeat: Infinity, ease: 'linear' }}
-            >
-              <motion.div
-                initial={{ opacity: 0, scale: 0 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: 0.2 + i * 0.1 }}
-                className="relative group cursor-default"
-              >
-                <div
-                  className="rounded-full shadow-lg"
-                  style={{ width: sizes[i], height: sizes[i], backgroundColor: colors[i] }}
-                />
-                <div className="absolute left-1/2 -translate-x-1/2 -top-8 opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none">
-                  <span className="text-xs font-semibold text-foreground whitespace-nowrap bg-background/90 backdrop-blur-sm px-2.5 py-1 rounded-full border border-border shadow-sm">
-                    {stage.title}
+        {/* Explorer split */}
+        <div
+          className="grid items-stretch"
+          style={{
+            gridTemplateColumns: "minmax(320px, 380px) 1fr",
+            gap: 36,
+          }}
+        >
+          {/* Left: stage list */}
+          <div className="flex flex-col gap-2.5">
+            {STAGES.map((s, i) => {
+              const a = ACCENT_HEX[s.accent];
+              const isActive = s.id === active;
+              return (
+                <button
+                  key={s.id}
+                  onClick={() => setActive(s.id)}
+                  className="text-left cursor-pointer transition-all duration-200"
+                  style={{
+                    border: `1px solid ${isActive ? a.fg : "var(--line)"}`,
+                    background: isActive ? a.bg : "var(--bg)",
+                    borderRadius: 18,
+                    padding: "20px 22px",
+                    display: "grid",
+                    gridTemplateColumns: "auto 1fr auto",
+                    alignItems: "center",
+                    gap: 16,
+                    color: "var(--ink)",
+                  }}
+                >
+                  <span
+                    className="font-mono"
+                    style={{
+                      fontSize: 12,
+                      letterSpacing: "0.05em",
+                      color: isActive ? a.fg : "var(--ink-3)",
+                      width: 28,
+                      textAlign: "center",
+                    }}
+                  >
+                    0{i + 1}
                   </span>
-                </div>
-              </motion.div>
-            </motion.div>
-          );
-        })}
+                  <span>
+                    <span
+                      className="block font-semibold"
+                      style={{ fontSize: 17, color: "var(--ink)" }}
+                    >
+                      {s.label}
+                    </span>
+                    <span className="block mt-0.5" style={{ fontSize: 13, color: "var(--ink-3)" }}>
+                      {s.age}
+                    </span>
+                  </span>
+                  <span
+                    className="inline-flex items-center justify-center transition-all duration-200"
+                    style={{
+                      width: 28,
+                      height: 28,
+                      borderRadius: "50%",
+                      border: `1px solid ${isActive ? a.fg : "var(--line)"}`,
+                      background: isActive ? a.fg : "transparent",
+                      color: isActive ? "white" : a.fg,
+                    }}
+                  >
+                    <ChevronRight size={14} strokeWidth={2.4} />
+                  </span>
+                </button>
+              );
+            })}
+          </div>
 
-        {/* Center text — words pop up one by one */}
-        <div className="relative z-10 text-center px-8 max-w-xl">
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight text-foreground leading-tight">
-            <motion.span
-              initial={{ opacity: 0, y: 30, filter: 'blur(6px)' }}
-              whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0 }}
-              className="inline-block"
+          {/* Right: tailored content */}
+          <div
+            className="relative overflow-hidden flex flex-col"
+            style={{
+              border: "1px solid var(--line)",
+              borderRadius: 24,
+              background: "var(--bg)",
+              minHeight: 560,
+            }}
+          >
+            {/* Image header */}
+            <div
+              className="relative"
+              style={{
+                height: 280,
+                backgroundImage: `url(${stage.image})`,
+                backgroundSize: "cover",
+                backgroundPosition: "center 30%",
+                borderBottom: "1px solid var(--line)",
+              }}
             >
-              {t('stage.closing')}&nbsp;
-            </motion.span>
-            <motion.span
-              initial={{ opacity: 0, y: 30, filter: 'blur(6px)' }}
-              whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.1 }}
-              className="inline-block"
+              <div
+                className="absolute inset-0"
+                style={{
+                  background:
+                    "linear-gradient(to top, rgba(21,17,14,0.80) 0%, rgba(21,17,14,0.10) 60%, transparent 100%)",
+                }}
+              />
+              <div
+                className="absolute flex items-end justify-between gap-6"
+                style={{ left: 32, right: 32, bottom: 26 }}
+              >
+                <div>
+                  <div
+                    className="font-mono mb-2.5"
+                    style={{
+                      fontSize: 11,
+                      letterSpacing: "0.16em",
+                      textTransform: "uppercase",
+                      color: "rgba(255,255,255,0.75)",
+                    }}
+                  >
+                    {stage.label} · {stage.age}
+                  </div>
+                  <h3
+                    className="m-0"
+                    style={{
+                      color: "white",
+                      fontSize: "clamp(24px, 3vw, 40px)",
+                      lineHeight: 1.05,
+                      letterSpacing: "-0.02em",
+                      fontWeight: 500,
+                      maxWidth: 520,
+                      textWrap: "balance" as const,
+                    }}
+                  >
+                    {stage.headline}
+                  </h3>
+                </div>
+                <div
+                  className="font-mono"
+                  style={{
+                    fontSize: 96,
+                    lineHeight: 1,
+                    color: "rgba(255,255,255,0.18)",
+                    fontWeight: 300,
+                  }}
+                >
+                  0{STAGES.findIndex((s) => s.id === active) + 1}
+                </div>
+              </div>
+            </div>
+
+            {/* Body */}
+            <div
+              className="grid flex-1"
+              style={{
+                padding: "32px 32px 36px",
+                gridTemplateColumns: "1.1fr 1fr",
+                gap: 36,
+              }}
             >
-              you are&nbsp;
-            </motion.span>
-            <motion.span
-              initial={{ opacity: 0, y: 30, filter: 'blur(6px)' }}
-              whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-              className="inline-block"
-            >
-              in life,&nbsp;
-            </motion.span>
-            <motion.span
-              initial={{ opacity: 0, y: 30, filter: 'blur(6px)', scale: 0.9 }}
-              whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)', scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.35, type: 'spring', bounce: 0.3 }}
-              className="inline-block text-primary"
-            >
-              {t('stage.closingBrand')}&nbsp;
-            </motion.span>
-            <motion.span
-              initial={{ opacity: 0, y: 30, filter: 'blur(6px)' }}
-              whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.45 }}
-              className="inline-block"
-            >
-              {t('stage.closingEnd')}
-            </motion.span>
-          </h2>
+              {/* Left column */}
+              <div>
+                <p
+                  className="m-0"
+                  style={{
+                    fontSize: 17,
+                    lineHeight: 1.5,
+                    color: "var(--ink-2)",
+                    textWrap: "pretty" as const,
+                  }}
+                >
+                  {stage.subtitle}
+                </p>
+
+                <div className="mt-7">
+                  <div
+                    className="font-mono mb-3.5"
+                    style={{
+                      fontSize: 11,
+                      letterSpacing: "0.14em",
+                      textTransform: "uppercase",
+                      color: accent.fg,
+                    }}
+                  >
+                    What people in this chapter ask
+                  </div>
+                  <ul className="m-0 p-0 list-none flex flex-col gap-2.5">
+                    {stage.questions.map((q, i) => (
+                      <li
+                        key={i}
+                        className="flex items-start gap-3"
+                        style={{
+                          padding: "12px 14px",
+                          background: "var(--paper)",
+                          border: "1px solid var(--line)",
+                          borderRadius: 12,
+                          fontSize: 14.5,
+                          lineHeight: 1.45,
+                          color: "var(--ink)",
+                        }}
+                      >
+                        <Quote
+                          size={14}
+                          style={{ color: accent.fg, flexShrink: 0, marginTop: 3 }}
+                        />
+                        <span>{q}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+
+              {/* Right column */}
+              <div className="flex flex-col gap-5">
+                <div>
+                  <div
+                    className="font-mono mb-3.5"
+                    style={{
+                      fontSize: 11,
+                      letterSpacing: "0.14em",
+                      textTransform: "uppercase",
+                      color: "var(--ink-3)",
+                    }}
+                  >
+                    Who you&apos;ll meet
+                  </div>
+                  <div className="flex flex-col gap-2">
+                    {stage.mentors.map((m) => (
+                      <div
+                        key={m}
+                        className="flex items-center gap-2.5"
+                        style={{ fontSize: 14, color: "var(--ink-2)" }}
+                      >
+                        <Check size={14} strokeWidth={2.4} style={{ color: accent.fg }} />
+                        {m}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                <div>
+                  <div
+                    className="font-mono mb-3"
+                    style={{
+                      fontSize: 11,
+                      letterSpacing: "0.14em",
+                      textTransform: "uppercase",
+                      color: "var(--ink-3)",
+                    }}
+                  >
+                    Where to start
+                  </div>
+                  <div className="flex flex-wrap gap-2">
+                    <ProductPill id={stage.primaryProduct} />
+                    {stage.secondary.map((id) => (
+                      <ProductPill key={id} id={id} />
+                    ))}
+                  </div>
+                </div>
+
+                {/* Story card */}
+                <figure
+                  className="m-0 mt-auto"
+                  style={{
+                    padding: "18px",
+                    background: accent.bg,
+                    border: `1px solid ${accent.ring}`,
+                    borderRadius: 14,
+                  }}
+                >
+                  <blockquote
+                    className="m-0 font-serif italic"
+                    style={{
+                      fontSize: 14.5,
+                      lineHeight: 1.5,
+                      color: "var(--ink)",
+                    }}
+                  >
+                    &ldquo;{stage.storyText}&rdquo;
+                  </blockquote>
+                  <figcaption
+                    className="mt-2.5 font-medium"
+                    style={{
+                      fontSize: 12,
+                      letterSpacing: "0.05em",
+                      color: "var(--ink-2)",
+                    }}
+                  >
+                    — {stage.storyName}
+                  </figcaption>
+                </figure>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Bottom CTA */}
+        <div className="mt-12 text-center" style={{ fontSize: 14, color: "var(--ink-3)" }}>
+          Not sure which fits?{" "}
+          <a
+            href="#products"
+            style={{
+              color: "var(--ink)",
+              textDecoration: "underline",
+              textUnderlineOffset: 4,
+            }}
+          >
+            Start with nCall — it&apos;ll help you figure it out
+          </a>
+          .
         </div>
       </div>
     </section>

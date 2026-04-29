@@ -1,150 +1,94 @@
-'use client';
+"use client";
 
-import React from 'react';
-import { motion, useReducedMotion } from 'motion/react';
-import Link from 'next/link';
+import Link from "next/link";
 
-interface FooterLink {
-  title: string;
-  href: string;
-}
-
-interface FooterSection {
-  label: string;
-  links: FooterLink[];
-}
-
-const footerLinks: FooterSection[] = [
+const cols: { h: string; links: { title: string; href: string; external?: boolean }[] }[] = [
   {
-    label: 'Explore',
+    h: "Explore",
     links: [
-      { title: 'nCall',   href: 'https://ncall-nexttry.com'  },
-      { title: 'Podcast', href: '/explore/podcast'  },
-      { title: 'nSpace',  href: '/explore/programs' },
+      { title: "nCall", href: "https://ncall-nexttry.com", external: true },
+      { title: "Podcast", href: "/explore/podcast" },
+      { title: "nSpace", href: "/explore/programs" },
     ],
   },
   {
-    label: 'Company',
+    h: "Company",
     links: [
-      { title: 'Our Story',      href: '/about'          },
-      { title: 'Team',           href: '/about/team'     },
-      { title: 'Contact Us',     href: '/about/contact'  },
-      { title: 'Privacy Policy', href: '/privacy'        },
+      { title: "Contact Us", href: "/about/contact" },
     ],
   },
   {
-    label: 'Resources',
+    h: "Social",
     links: [
-      { title: 'Blog',             href: '/blog'       },
-      { title: 'Mentorship',       href: '/mentorship' },
-      { title: 'Help',             href: '/help'       },
-      { title: 'Terms of Service', href: '/terms'      },
-    ],
-  },
-  {
-    label: 'Social',
-    links: [
-      { title: 'Instagram', href: 'https://www.instagram.com/nexttry.hk' },
-      { title: 'LinkedIn',  href: 'https://linkedin.com/company/nexttry' },
+      { title: "Instagram", href: "https://www.instagram.com/nexttry.hk", external: true },
+      { title: "LinkedIn", href: "https://linkedin.com/company/nexttry", external: true },
     ],
   },
 ];
 
-const ease = [0.25, 0.46, 0.45, 0.94] as const;
-
 export function Footer() {
-  const shouldReduceMotion = useReducedMotion();
-
   return (
-    <footer className="relative w-full flex flex-col items-center justify-center bg-background border-t border-border px-8 py-12 lg:py-16 overflow-hidden">
-      {/* Top glow line */}
-      <motion.div
-        initial={{ scaleX: 0, opacity: 0 }}
-        whileInView={{ scaleX: 1, opacity: 1 }}
-        viewport={{ once: true }}
-        transition={{ duration: 1, ease }}
-        className="bg-foreground/20 absolute top-0 right-1/2 left-1/2 h-px w-1/3 -translate-x-1/2 -translate-y-1/2 rounded-full blur origin-center"
-      />
-
-      <div className="grid w-full max-w-7xl mx-auto gap-8 xl:grid-cols-3 xl:gap-8">
-        {/* Brand — slides up */}
-        <motion.div
-          initial={shouldReduceMotion ? {} : { opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, ease }}
-          className="space-y-4"
-        >
-          <motion.p
-            initial={shouldReduceMotion ? {} : { opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.1, ease }}
-            className="text-muted-foreground text-sm leading-relaxed max-w-xs"
+    <footer
+      style={{
+        paddingBlock: 56,
+        paddingInline: 28,
+        background: "var(--bg)",
+      }}
+    >
+      <div
+        className="mx-auto"
+        style={{
+          maxWidth: 1240,
+          display: "grid",
+          gridTemplateColumns: "1.4fr repeat(3, 1fr)",
+          gap: 36,
+          alignItems: "start",
+        }}
+      >
+        <div>
+          <img src="/logo.png" alt="NextTry" style={{ height: 36, width: "auto" }} />
+          <p
+            className="m-0 mt-3"
+            style={{ fontSize: 13, color: "var(--ink-3)", lineHeight: 1.6, maxWidth: 320 }}
           >
-            Wherever you are in life — NextTry is here. Every stage. Every question. Every next step.
-          </motion.p>
-          <motion.p
-            initial={shouldReduceMotion ? {} : { opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.2, ease }}
-            className="text-muted-foreground text-sm"
-          >
+            Wherever you are in life — NextTry is here.
+            <br />
+            Every stage. Every question. Every next step.
+          </p>
+          <p className="mt-4" style={{ fontSize: 12, color: "var(--ink-3)" }}>
             © {new Date().getFullYear()} NextTry. All rights reserved.
-          </motion.p>
-        </motion.div>
-
-        {/* Links grid — stagger left to right */}
-        <div className="mt-10 grid grid-cols-2 gap-8 md:grid-cols-4 xl:col-span-2 xl:mt-0">
-          {footerLinks.map((section, sectionIndex) => (
-            <motion.div
-              key={section.label}
-              initial={shouldReduceMotion ? {} : { opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.1 + sectionIndex * 0.1, ease }}
-              className="mb-10 md:mb-0"
-            >
-              {/* Section heading */}
-              <motion.h3
-                initial={shouldReduceMotion ? {} : { opacity: 0, x: -10 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: 0.15 + sectionIndex * 0.1, ease }}
-                className="text-xs font-semibold text-foreground tracking-widest uppercase"
-              >
-                {section.label}
-              </motion.h3>
-
-              {/* Links — each staggers in */}
-              <ul className="text-muted-foreground mt-4 space-y-2.5 text-sm">
-                {section.links.map((link, linkIndex) => (
-                  <motion.li
-                    key={link.title}
-                    initial={shouldReduceMotion ? {} : { opacity: 0, x: -6 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
-                    transition={{
-                      duration: 0.35,
-                      delay: 0.2 + sectionIndex * 0.1 + linkIndex * 0.05,
-                      ease,
-                    }}
-                  >
-                    <Link
-                      href={link.href}
-                      target={link.href.startsWith('https') ? '_blank' : undefined}
-                      rel={link.href.startsWith('https') ? 'noopener noreferrer' : undefined}
-                      className="hover:text-primary inline-flex items-center gap-1.5 transition-colors duration-200"
-                    >
-                      {link.title}
-                    </Link>
-                  </motion.li>
-                ))}
-              </ul>
-            </motion.div>
-          ))}
+          </p>
         </div>
+        {cols.map((c) => (
+          <div key={c.h}>
+            <div
+              className="font-mono mb-3.5"
+              style={{
+                fontSize: 11,
+                letterSpacing: "0.16em",
+                textTransform: "uppercase",
+                color: "var(--ink-3)",
+              }}
+            >
+              {c.h}
+            </div>
+            <ul className="list-none p-0 m-0 flex flex-col gap-2">
+              {c.links.map((l) => (
+                <li key={l.title}>
+                  <Link
+                    href={l.href}
+                    target={l.external ? "_blank" : undefined}
+                    rel={l.external ? "noopener noreferrer" : undefined}
+                    style={{ fontSize: 14, color: "var(--ink-2)" }}
+                    className="hover:text-foreground transition-colors"
+                  >
+                    {l.title}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
       </div>
     </footer>
   );

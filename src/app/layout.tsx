@@ -3,25 +3,33 @@ import { ScrollProgress } from "@/components/ui/scroll-progress";
 import { AuthProvider } from "@/components/ui/session-provider";
 import { LanguageProvider } from "@/components/ui/language-context";
 import {
-  Montserrat,
-  Playfair_Display,
-  Source_Code_Pro,
+  Inter,
+  Fraunces,
+  Instrument_Serif,
+  JetBrains_Mono,
 } from "next/font/google";
 import "./globals.css";
 
-const sans = Montserrat({
+const sans = Inter({
   variable: "--font-sans",
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
 });
 
-const serif = Playfair_Display({
+const serif = Fraunces({
   variable: "--font-serif",
   subsets: ["latin"],
-  weight: ["400", "600", "700"],
+  weight: ["400", "500", "600", "700"],
 });
 
-const mono = Source_Code_Pro({
+const display = Instrument_Serif({
+  variable: "--font-display",
+  subsets: ["latin"],
+  weight: ["400"],
+  style: ["normal", "italic"],
+});
+
+const mono = JetBrains_Mono({
   variable: "--font-mono",
   subsets: ["latin"],
   weight: ["400", "500"],
@@ -33,7 +41,8 @@ export const metadata: Metadata = {
     default: "NextTry — Every stage. Every question. Every next step.",
     template: "%s | NextTry",
   },
-  description: "Wherever you are in life — NextTry is here. Mentorship, AI career guidance, and community for every stage of life.",
+  description:
+    "Mentorship for every chapter of life — through AI conversations, real podcast stories, and a human community.",
   openGraph: {
     title: "NextTry",
     description: "Wherever you are in life — NextTry is here.",
@@ -49,7 +58,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${sans.variable} ${serif.variable} ${mono.variable} h-full antialiased`}
+      className={`${sans.variable} ${serif.variable} ${display.variable} ${mono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
         <AuthProvider>

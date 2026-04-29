@@ -8,6 +8,7 @@
   /* ── Typography ── */
   --font-sans: var(--font-sans);
   --font-serif: var(--font-serif);
+  --font-display: var(--font-display);
   --font-mono: var(--font-mono);
   --font-pixel: var(--font-pixel);
 
@@ -77,44 +78,61 @@
   --violet-200: #ddd6fe;
 
   /* ── Font fallbacks (overridden at runtime by next/font class on <html>) ── */
-  --font-sans: Montserrat, sans-serif;
-  --font-serif: Playfair Display, serif;
-  --font-mono: Source Code Pro, monospace;
+  --font-sans: Inter, sans-serif;
+  --font-serif: Fraunces, serif;
+  --font-display: "Instrument Serif", serif;
+  --font-mono: "JetBrains Mono", monospace;
 
-  /* ── Light theme ── */
-  --card: #ffffff;
-  --ring: #6c5ce7;
-  --input: #d4d4d4;
-  --muted: #c9c4b5;
-  --accent: #8b9467;
-  --border: #d4d4d4;
-  --radius: 0.5rem;
-  --chart-1: #6c5ce7;
-  --chart-2: #8e44ad;
-  --chart-3: #4b0082;
-  --chart-4: #6495ed;
-  --chart-5: #4682b4;
+  /* ── Editorial palette — ink/paper system ── */
+  --ink: #15110e;
+  --ink-2: #4a423b;
+  --ink-3: #8c8378;
+  --bg: #f6f2ed;
+  --bg-alt: #f1ebe2;
+  --paper: #fbf8f3;
+  --line: rgba(21, 17, 14, 0.10);
+
+  /* Accent colors */
+  --indigo: #5B4BE0;
+  --amber: #E89A1E;
+  --coral: #E8624D;
+  --teal: #1B9D78;
+  --plum: #8C4BD6;
+
+  /* ── Light theme — editorial cream ── */
+  --card: #fbf8f3;
+  --ring: #15110e;
+  --input: rgba(21, 17, 14, 0.10);
+  --muted: #f1ebe2;
+  --accent: #15110e;
+  --border: rgba(21, 17, 14, 0.10);
+  --radius: 0.75rem;
+  --chart-1: #1a1d23;
+  --chart-2: #f5a623;
+  --chart-3: #4a90e2;
+  --chart-4: #7ed321;
+  --chart-5: #b8b89a;
   --popover: #ffffff;
-  --primary: #6c5ce7;
-  --sidebar: #f9f9f9;
-  --secondary: #a1c9f2;
-  --background: #f9f9f9;
-  --foreground: #333333;
+  --primary: #1a1d23;
+  --sidebar: #f8f3e8;
+  --secondary: #ebe4d2;
+  --background: #f6f2ed;
+  --foreground: #15110e;
   --destructive: #ef4444;
-  --sidebar-ring: #6c5ce7;
-  --sidebar-accent: #8b9467;
-  --sidebar-border: #d4d4d4;
-  --card-foreground: #333333;
-  --sidebar-primary: #6c5ce7;
-  --muted-foreground: #6e6e6e;
-  --accent-foreground: #ffffff;
-  --popover-foreground: #333333;
-  --primary-foreground: #ffffff;
-  --sidebar-foreground: #333333;
-  --secondary-foreground: #333333;
+  --sidebar-ring: #1a1d23;
+  --sidebar-accent: #1a1d23;
+  --sidebar-border: #e8e0cb;
+  --card-foreground: #1a1d23;
+  --sidebar-primary: #1a1d23;
+  --muted-foreground: #6b6960;
+  --accent-foreground: #f8f3e8;
+  --popover-foreground: #1a1d23;
+  --primary-foreground: #f8f3e8;
+  --sidebar-foreground: #1a1d23;
+  --secondary-foreground: #1a1d23;
   --destructive-foreground: #ffffff;
-  --sidebar-accent-foreground: #ffffff;
-  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent-foreground: #f8f3e8;
+  --sidebar-primary-foreground: #f8f3e8;
 
   /* ── Shadow tokens (available via var(--shadow-*) in custom CSS) ── */
   --shadow-blur: 10px;

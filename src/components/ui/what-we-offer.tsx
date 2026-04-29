@@ -1,159 +1,351 @@
-'use client';
+"use client";
 
-import { motion } from 'framer-motion';
-import { Compass, Mic, Calendar, ArrowRight } from 'lucide-react';
-import Link from 'next/link';
-import { useLanguage } from '@/components/ui/language-context';
+import { ArrowUpRight, Sparkles, Mic, Users, Play } from "lucide-react";
+import { ACCENT_HEX } from "@/lib/site-data";
 
-const offers = [
+const cards = [
   {
-    icon: Compass,
-    title: 'nCall',
-    subtitle: 'AI Mentor',
-    description: 'Personalised career guidance powered by AI',
-    image: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?w=600&h=350&fit=crop',
-    href: 'https://ncall-nexttry.com',
-    cta: 'Try nCall',
-    accent: '#6c5ce7',     // purple
-    accentBg: '#6c5ce7',
+    id: "ncall",
+    step: "01",
+    Icon: Sparkles,
+    label: "nCall",
+    tag: "START — AI MENTORSHIP",
+    tagline: "Open the conversation.",
+    desc: "1-on-1 mentorship on demand. nCall asks the questions a great mentor would — about values, fears, options, trade-offs — so you can name what you're really feeling before anyone else weighs in.",
+    cta: "Start with nCall",
+    href: "https://ncall-nexttry.com",
+    external: true,
+    color: ACCENT_HEX.indigo,
   },
   {
-    icon: Mic,
-    title: 'The Fourth Relationship',
-    subtitle: 'Podcast',
-    description: 'Real mentorship stories, real growth',
-    image: 'https://images.unsplash.com/photo-1478737270239-2f02b77fc618?w=600&h=350&fit=crop',
-    href: '/explore/podcast',
-    cta: 'Listen Now',
-    accent: '#e17055',     // coral
-    accentBg: '#e17055',
+    id: "podcast",
+    step: "02",
+    Icon: Mic,
+    label: "The Fourth Relationship",
+    tag: "LISTEN — PODCAST MENTORSHIP",
+    tagline: "Hear how others did it.",
+    desc: "A weekly podcast about the mentors who change us — beyond family, friends, and partners. Real stories that show you what the bridge looks like before you cross it yourself.",
+    cta: "Listen now",
+    href: "https://www.youtube.com/@the4threlationships",
+    external: true,
+    color: ACCENT_HEX.amber,
   },
   {
-    icon: Calendar,
-    title: 'nSpace',
-    subtitle: 'Community',
-    description: 'Find your mentor. Build your path.',
-    image: 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=600&h=350&fit=crop',
-    href: '/explore/programs',
-    cta: 'View nSpace',
-    accent: '#00b894',     // teal
-    accentBg: '#00b894',
+    id: "nspace",
+    step: "03",
+    Icon: Users,
+    label: "nSpace",
+    tag: "MEET — HUMAN MENTORSHIP",
+    tagline: "Cross the bridge. Meet a real human.",
+    desc: "When you're ready, nSpace matches you with a real person who's stood exactly where you're standing. Calls, messages, and small cohorts — mentorship by humans, the way it was always meant to be.",
+    cta: "Explore nSpace",
+    href: "/explore/programs",
+    external: false,
+    color: ACCENT_HEX.teal,
   },
 ];
 
-const ease = [0.25, 0.46, 0.45, 0.94] as const;
+const mentors = [
+  { name: "Priya R.", role: "PM at Stripe · ex-finance", match: "92%" },
+  { name: "Marcus L.", role: "Designer · 3 career pivots", match: "88%" },
+  { name: "Aisha N.", role: "Encore career coach", match: "84%" },
+];
+
+function NCallVisual() {
+  return (
+    <div
+      className="flex flex-col gap-2.5"
+      style={{
+        padding: "16px 18px",
+        background: "white",
+        border: "1px solid var(--line)",
+        borderRadius: 14,
+        fontSize: 13,
+        color: "var(--ink-2)",
+        lineHeight: 1.45,
+      }}
+    >
+      <div className="flex gap-2 items-start">
+        <span
+          className="inline-flex items-center justify-center shrink-0"
+          style={{
+            width: 22,
+            height: 22,
+            borderRadius: 6,
+            background: ACCENT_HEX.indigo.bg,
+            color: ACCENT_HEX.indigo.fg,
+          }}
+        >
+          <Sparkles size={12} strokeWidth={2} />
+        </span>
+        <span>What&apos;s the part of this decision you keep avoiding?</span>
+      </div>
+      <div
+        className="self-end"
+        style={{
+          maxWidth: "80%",
+          padding: "8px 12px",
+          borderRadius: 12,
+          background: "var(--ink)",
+          color: "var(--bg)",
+          fontSize: 13,
+        }}
+      >
+        Honestly? Telling my parents.
+      </div>
+      <div className="flex gap-2 items-start">
+        <span
+          className="inline-flex items-center justify-center shrink-0"
+          style={{
+            width: 22,
+            height: 22,
+            borderRadius: 6,
+            background: ACCENT_HEX.indigo.bg,
+            color: ACCENT_HEX.indigo.fg,
+          }}
+        >
+          <Sparkles size={12} strokeWidth={2} />
+        </span>
+        <span>Let&apos;s start there. What do you think they&apos;re really afraid of?</span>
+      </div>
+    </div>
+  );
+}
+
+function PodcastVisual() {
+  return (
+    <div
+      style={{
+        padding: "16px 18px",
+        background: "white",
+        border: "1px solid var(--line)",
+        borderRadius: 14,
+      }}
+    >
+      <div className="flex items-center gap-3">
+        <div
+          className="inline-flex items-center justify-center"
+          style={{
+            width: 44,
+            height: 44,
+            borderRadius: 10,
+            background: ACCENT_HEX.amber.bg,
+            color: ACCENT_HEX.amber.fg,
+          }}
+        >
+          <Play size={18} strokeWidth={2} fill="currentColor" />
+        </div>
+        <div className="flex-1 min-w-0">
+          <div className="font-semibold truncate" style={{ fontSize: 13, color: "var(--ink)" }}>
+            Ep. 14 — The stranger who hired me
+          </div>
+          <div className="mt-0.5" style={{ fontSize: 11, color: "var(--ink-3)" }}>
+            32 min · Posted Tuesday
+          </div>
+        </div>
+        <div className="font-mono" style={{ fontSize: 11, color: "var(--ink-3)" }}>
+          00:00 / 32:14
+        </div>
+      </div>
+      <div className="mt-3.5 flex items-center gap-[3px]" style={{ height: 28 }}>
+        {Array.from({ length: 48 }).map((_, i) => (
+          <span
+            key={i}
+            className="flex-1"
+            style={{
+              height: `${20 + Math.abs(Math.sin(i * 0.7)) * 18 + Math.cos(i * 0.4) * 6}%`,
+              background: i < 14 ? ACCENT_HEX.amber.fg : "var(--line)",
+              borderRadius: 1,
+            }}
+          />
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function NSpaceVisual() {
+  return (
+    <div
+      className="flex flex-col gap-2.5"
+      style={{
+        padding: "14px 18px",
+        background: "white",
+        border: "1px solid var(--line)",
+        borderRadius: 14,
+      }}
+    >
+      {mentors.map((m) => (
+        <div
+          key={m.name}
+          className="flex items-center gap-3"
+          style={{ padding: "8px 4px" }}
+        >
+          <span
+            className="inline-flex items-center justify-center font-semibold"
+            style={{
+              width: 32,
+              height: 32,
+              borderRadius: "50%",
+              background: ACCENT_HEX.teal.bg,
+              color: ACCENT_HEX.teal.fg,
+              fontSize: 12,
+            }}
+          >
+            {m.name
+              .split(" ")
+              .map((s) => s[0])
+              .join("")}
+          </span>
+          <div className="flex-1 min-w-0">
+            <div className="font-semibold truncate" style={{ fontSize: 13, color: "var(--ink)" }}>
+              {m.name}
+            </div>
+            <div className="truncate" style={{ fontSize: 11, color: "var(--ink-3)" }}>
+              {m.role}
+            </div>
+          </div>
+          <span
+            className="font-mono font-semibold"
+            style={{ fontSize: 11, color: ACCENT_HEX.teal.fg }}
+          >
+            {m.match}
+          </span>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+const visuals: Record<string, React.ReactNode> = {
+  ncall: <NCallVisual />,
+  podcast: <PodcastVisual />,
+  nspace: <NSpaceVisual />,
+};
 
 export function WhatWeOffer() {
-  const { t } = useLanguage();
   return (
-    <section className="py-32 px-8">
-      <div className="max-w-5xl mx-auto">
-        {/* Heading */}
-        <div className="text-center mb-16">
-          <motion.p
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, ease }}
-            className="text-xs font-semibold uppercase tracking-widest text-primary mb-3"
-          >
-            {t('offer.label')}
-          </motion.p>
-          <h2 className="text-3xl md:text-4xl font-extrabold tracking-tight text-foreground">
-            {t('offer.heading').split(' ').map((word, i) => (
-              <motion.span
-                key={i}
-                className="inline-block mr-[0.3em]"
-                initial={{ opacity: 0, y: 12 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: i * 0.05, ease }}
-              >
-                {word}
-              </motion.span>
-            ))}
-          </h2>
+    <section
+      id="products"
+      className="border-b"
+      style={{
+        paddingBlock: 110,
+        paddingInline: 28,
+        borderColor: "var(--line)",
+      }}
+    >
+      <div className="max-w-[1240px] mx-auto">
+        <div className="flex items-end justify-between flex-wrap gap-6 mb-14">
+          <div className="max-w-[720px]">
+            <div
+              className="font-mono inline-flex items-center gap-2.5 mb-4"
+              style={{
+                fontSize: 11,
+                letterSpacing: "0.18em",
+                textTransform: "uppercase",
+                color: "var(--ink-3)",
+              }}
+            >
+              <span style={{ width: 24, height: 1, background: "var(--ink-3)" }} />
+              02 — The mentorship bridge
+            </div>
+            <h2
+              className="m-0"
+              style={{
+                fontSize: "clamp(36px, 4.6vw, 64px)",
+                lineHeight: 1.0,
+                letterSpacing: "-0.025em",
+                fontWeight: 500,
+                color: "var(--ink)",
+                textWrap: "balance" as const,
+              }}
+            >
+              From an AI conversation
+              <br />
+              <span className="italic" style={{ fontFamily: "var(--font-display)" }}>to a real human guide.</span>
+            </h2>
+            <p
+              className="mt-5 max-w-[520px]"
+              style={{ fontSize: 15, lineHeight: 1.55, color: "var(--ink-2)" }}
+            >
+              Mentorship rarely starts with a perfect match. It starts with a question. NextTry
+              is the bridge — three steps, all built around the mentee, that take you from the
+              first quiet conversation to the real human who&apos;ll stand next to you.
+            </p>
+          </div>
         </div>
 
-        {/* Cards */}
-        <div className="grid md:grid-cols-3 gap-8">
-          {offers.map((offer, i) => (
-            <Link key={offer.title} href={offer.href} className="group block">
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.15 }}
-                transition={{ duration: 0.7, delay: i * 0.15, ease }}
-                className="rounded-3xl border border-border bg-background overflow-hidden hover:border-primary/30 hover:shadow-xl hover:shadow-primary/5 transition-all duration-300"
-              >
-                {/* Image — zoom on hover */}
-                <div className="overflow-hidden">
-                  <motion.img
-                    src={offer.image}
-                    alt={offer.title}
-                    className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-500"
-                    initial={{ scale: 1.1 }}
-                    whileInView={{ scale: 1 }}
-                    viewport={{ once: true, amount: 0.3 }}
-                    transition={{ duration: 0.8, delay: i * 0.15 + 0.1, ease }}
-                  />
-                </div>
-
-                {/* Content — staggered reveal */}
-                <div className="p-6 flex flex-col gap-4">
-                  {/* Icon + subtitle */}
-                  <motion.div
-                    initial={{ opacity: 0, x: -8 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.4, delay: i * 0.15 + 0.2, ease }}
-                    className="flex items-center gap-2.5"
-                  >
-                    <div className="w-9 h-9 rounded-xl flex items-center justify-center" style={{ backgroundColor: `${offer.accentBg}15` }}>
-                      <offer.icon className="w-4 h-4" style={{ color: offer.accent }} strokeWidth={1.5} />
-                    </div>
-                    <span className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">
-                      {offer.subtitle}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {cards.map((c) => (
+            <article
+              key={c.id}
+              className="flex flex-col gap-5"
+              style={{
+                background: "var(--paper)",
+                border: "1px solid var(--line)",
+                borderRadius: 24,
+                padding: 28,
+              }}
+            >
+              <header>
+                <div className="flex items-center justify-between mb-4">
+                  <div className="flex items-center gap-2.5">
+                    <span
+                      className="inline-flex items-center justify-center"
+                      style={{
+                        width: 36,
+                        height: 36,
+                        borderRadius: 10,
+                        background: c.color.bg,
+                        color: c.color.fg,
+                      }}
+                    >
+                      <c.Icon size={18} strokeWidth={1.6} />
                     </span>
-                  </motion.div>
-
-                  {/* Title */}
-                  <motion.h3
-                    initial={{ opacity: 0, y: 16 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5, delay: i * 0.15 + 0.3, ease }}
-                    className="text-xl font-bold tracking-tight transition-colors duration-200"
-                    whileHover={{ color: offer.accent }}
+                    <span
+                      className="font-mono font-medium"
+                      style={{ fontSize: 11, letterSpacing: "0.16em", color: c.color.fg }}
+                    >
+                      {c.tag}
+                    </span>
+                  </div>
+                  <span
+                    className="font-mono"
+                    style={{ fontSize: 11, color: "var(--ink-3)", letterSpacing: "0.1em" }}
                   >
-                    {offer.title}
-                  </motion.h3>
-
-                  {/* Description */}
-                  <motion.p
-                    initial={{ opacity: 0, y: 12 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.4, delay: i * 0.15 + 0.4, ease }}
-                    className="text-sm text-muted-foreground leading-relaxed"
-                  >
-                    {offer.description}
-                  </motion.p>
-
-                  {/* Arrow link */}
-                  <motion.div
-                    initial={{ opacity: 0, x: -10 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.4, delay: i * 0.15 + 0.5, ease }}
-                    className="flex items-center gap-1.5 text-sm font-medium group-hover:gap-3 transition-all duration-200 mt-auto"
-                    style={{ color: offer.accent }}
-                  >
-                    {offer.cta} <ArrowRight className="w-4 h-4" />
-                  </motion.div>
+                    {c.step}
+                  </span>
                 </div>
-              </motion.div>
-            </Link>
+                <h3
+                  className="m-0 font-semibold"
+                  style={{ fontSize: 26, letterSpacing: "-0.02em", color: "var(--ink)" }}
+                >
+                  {c.label}
+                </h3>
+                <p
+                  className="mt-2 font-medium"
+                  style={{ fontSize: 15.5, lineHeight: 1.45, color: "var(--ink)" }}
+                >
+                  {c.tagline}
+                </p>
+              </header>
+
+              <p className="m-0" style={{ fontSize: 14, lineHeight: 1.55, color: "var(--ink-2)" }}>
+                {c.desc}
+              </p>
+
+              {visuals[c.id]}
+
+              <a
+                href={c.href}
+                target={c.external ? "_blank" : undefined}
+                rel={c.external ? "noopener noreferrer" : undefined}
+                className="mt-auto inline-flex items-center gap-2 font-semibold"
+                style={{ fontSize: 14, color: c.color.fg }}
+              >
+                {c.cta} <ArrowUpRight size={14} strokeWidth={2} />
+              </a>
+            </article>
           ))}
         </div>
       </div>
