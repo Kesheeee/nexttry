@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 
-export function Navbar() {
+export function Navbar({ minimal = false }: { minimal?: boolean } = {}) {
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
@@ -33,6 +33,7 @@ export function Navbar() {
         />
       </a>
 
+      {!minimal && (
       <div className="hidden md:flex items-center gap-7">
         <a href="/#stages" className="px-1 py-2 hover:opacity-70 transition-opacity" style={{ fontSize: 14, color: "var(--ink-2)" }}>
           Life stages
@@ -64,6 +65,7 @@ export function Navbar() {
           Find your stage <ArrowRight size={14} strokeWidth={2} />
         </a>
       </div>
+      )}
     </nav>
   );
 }
