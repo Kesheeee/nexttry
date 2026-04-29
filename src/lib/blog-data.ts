@@ -34,7 +34,9 @@ export type Post = {
   featured?: boolean;
 };
 
-export const POSTS: Post[] = [
+export const POSTS: Post[] = [];
+
+const _PLACEHOLDER_POSTS: Post[] = [
   {
     id: "fourth-relationship",
     title: "The Fourth Relationship: why mentorship deserves a name of its own.",

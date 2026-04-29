@@ -324,6 +324,7 @@ export default function BlogPage() {
   const featured = POSTS.find((p) => p.featured);
   const rest = POSTS.filter((p) => !p.featured);
   const filtered = filter === "all" ? rest : rest.filter((p) => p.category === filter);
+  const hasPosts = POSTS.length > 0;
 
   return (
     <>
@@ -383,8 +384,58 @@ export default function BlogPage() {
         </div>
       </section>
 
+      {/* Coming soon block (when no posts) */}
+      {!hasPosts && (
+        <section className="py-20 sm:py-28 px-5 sm:px-7">
+          <div className="max-w-[860px] mx-auto text-center">
+            <div
+              className="font-mono inline-flex items-center gap-2.5 mb-5"
+              style={{
+                fontSize: 11,
+                letterSpacing: "0.18em",
+                textTransform: "uppercase",
+                color: "var(--ink-3)",
+              }}
+            >
+              <span style={{ width: 24, height: 1, background: "var(--ink-3)" }} />
+              Coming soon
+            </div>
+            <h2
+              className="m-0"
+              style={{
+                fontSize: "clamp(36px, 5vw, 64px)",
+                lineHeight: 1.05,
+                letterSpacing: "-0.025em",
+                fontWeight: 500,
+                color: "var(--ink)",
+                textWrap: "balance" as const,
+              }}
+            >
+              Our first stories
+              <br />
+              <span className="italic" style={{ fontFamily: "var(--font-display)" }}>
+                are on their way.
+              </span>
+            </h2>
+            <p
+              className="mx-auto mt-6"
+              style={{
+                maxWidth: 520,
+                fontSize: 16,
+                lineHeight: 1.55,
+                color: "var(--ink-2)",
+              }}
+            >
+              We&apos;re writing essays, interviewing mentors, and pulling together the kinds of
+              stories you&apos;d actually want to read at every chapter of life. Subscribe below
+              and we&apos;ll let you know when the first one lands.
+            </p>
+          </div>
+        </section>
+      )}
+
       {/* Featured */}
-      {featured && (
+      {hasPosts && featured && (
         <section style={{ paddingBlock: 56, paddingInline: 28 }}>
           <div className="max-w-[1240px] mx-auto">
             <FeaturedPost post={featured} />
@@ -393,6 +444,7 @@ export default function BlogPage() {
       )}
 
       {/* Filter strip */}
+      {hasPosts && (
       <section
         className="sticky"
         style={{
@@ -477,8 +529,10 @@ export default function BlogPage() {
           })}
         </div>
       </section>
+      )}
 
       {/* Grid */}
+      {hasPosts && (
       <section style={{ paddingBlock: 56, paddingInline: 28, minHeight: 480 }}>
         <div className="max-w-[1240px] mx-auto">
           {filtered.length === 0 ? (
@@ -501,6 +555,7 @@ export default function BlogPage() {
           )}
         </div>
       </section>
+      )}
 
       <Newsletter />
       <Footer />
