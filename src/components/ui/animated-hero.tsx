@@ -46,7 +46,7 @@ function Hero() {
           style={{
             fontSize: "clamp(48px, 7.6vw, 116px)",
             lineHeight: 0.95,
-            letterSpacing: "-0.035em",
+            letterSpacing: "0",
             fontWeight: 500,
             color: "var(--ink)",
             textWrap: "balance" as const,
