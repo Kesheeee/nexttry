@@ -31,10 +31,8 @@ export function HowItWorks() {
   return (
     <section
       id="how"
-      className="border-b"
+      className="border-b py-16 sm:py-24 px-5 sm:px-7"
       style={{
-        paddingBlock: 110,
-        paddingInline: 28,
         borderColor: "var(--line)",
         background: "var(--paper)",
       }}
@@ -79,11 +77,10 @@ export function HowItWorks() {
           {steps.map((s, i) => (
             <div
               key={s.n}
-              className="flex flex-col gap-3.5"
+              className={`flex flex-col gap-3.5 p-7 md:p-8 ${i < 2 ? "border-b md:border-b-0 md:border-r" : ""}`}
               style={{
-                padding: "36px 32px",
-                borderRight: i < 2 ? "1px solid var(--line)" : undefined,
-                minHeight: 260,
+                borderColor: "var(--line)",
+                minHeight: 200,
               }}
             >
               <div className="flex items-center justify-between">

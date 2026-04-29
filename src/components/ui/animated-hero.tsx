@@ -12,13 +12,8 @@ function Hero() {
   return (
     <section
       id="top"
-      className="relative overflow-hidden border-b"
-      style={{
-        paddingTop: 160,
-        paddingBottom: 110,
-        paddingInline: 28,
-        borderColor: "var(--line)",
-      }}
+      className="relative overflow-hidden border-b pt-24 sm:pt-32 md:pt-40 pb-16 sm:pb-24 md:pb-28 px-5 sm:px-7"
+      style={{ borderColor: "var(--line)" }}
     >
       {/* Soft warm wash in the corners */}
       <div
@@ -82,10 +77,10 @@ function Hero() {
         </p>
 
         {/* CTA row */}
-        <div className="mt-11 flex flex-wrap items-center gap-4">
+        <div className="mt-9 sm:mt-11 flex flex-col sm:flex-row sm:flex-wrap sm:items-center gap-3 sm:gap-4">
           <a
             href="#stages"
-            className="inline-flex items-center gap-2.5 font-medium"
+            className="inline-flex items-center justify-center sm:justify-start gap-2.5 font-medium"
             style={{
               padding: "16px 26px",
               borderRadius: 999,
@@ -100,7 +95,7 @@ function Hero() {
           </a>
           <a
             href="#products"
-            className="inline-flex items-center gap-2 font-medium"
+            className="inline-flex items-center justify-center sm:justify-start gap-2 font-medium"
             style={{
               padding: "16px 22px",
               borderRadius: 999,
@@ -116,16 +111,17 @@ function Hero() {
 
         {/* Three product surfaces */}
         <div
-          className="mt-20 grid grid-cols-1 md:grid-cols-3"
+          className="mt-12 sm:mt-20 grid grid-cols-1 md:grid-cols-3"
           style={{ borderTop: "1px solid var(--line)" }}
         >
-          {products.map((p, i) => (
+          {products.map((p, i) => {
+            const isNotLast = i < products.length - 1;
+            return (
             <div
               key={p.label}
-              className="flex items-center gap-3.5"
+              className={`flex items-center gap-3.5 py-5 px-1 md:px-6 md:py-7 ${isNotLast ? "border-b md:border-b-0 md:border-r" : ""}`}
               style={{
-                padding: "26px 24px",
-                borderRight: i < products.length - 1 ? "1px solid var(--line)" : undefined,
+                borderColor: "var(--line)",
               }}
             >
               <span
@@ -151,7 +147,8 @@ function Hero() {
                 <div style={{ fontSize: 13, color: "var(--ink-3)" }}>{p.desc}</div>
               </div>
             </div>
-          ))}
+            );
+          })}
         </div>
       </div>
     </section>

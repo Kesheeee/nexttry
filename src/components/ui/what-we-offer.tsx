@@ -227,15 +227,11 @@ export function WhatWeOffer() {
   return (
     <section
       id="products"
-      className="border-b"
-      style={{
-        paddingBlock: 110,
-        paddingInline: 28,
-        borderColor: "var(--line)",
-      }}
+      className="border-b py-16 sm:py-24 px-5 sm:px-7"
+      style={{ borderColor: "var(--line)" }}
     >
       <div className="max-w-[1240px] mx-auto">
-        <div className="flex items-end justify-between flex-wrap gap-6 mb-14">
+        <div className="flex flex-col md:flex-row md:items-end md:justify-between flex-wrap gap-6 mb-10 md:mb-14">
           <div className="max-w-[720px]">
             <div
               className="font-mono inline-flex items-center gap-2.5 mb-4"

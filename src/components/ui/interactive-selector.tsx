@@ -54,17 +54,15 @@ export function InteractiveSelector() {
   return (
     <section
       id="stages"
-      className="border-b"
+      className="border-b py-16 sm:py-24 px-5 sm:px-7"
       style={{
         borderColor: "var(--line)",
         background: "var(--paper)",
-        paddingBlock: 110,
-        paddingInline: 28,
       }}
     >
       <div className="max-w-[1240px] mx-auto">
         {/* Heading */}
-        <div className="flex items-end justify-between flex-wrap gap-6 mb-14">
+        <div className="flex flex-col md:flex-row md:items-end md:justify-between flex-wrap gap-6 mb-10 md:mb-14">
           <div className="max-w-[720px]">
             <div
               className="font-mono inline-flex items-center gap-2.5 mb-4"
@@ -106,13 +104,7 @@ export function InteractiveSelector() {
         </div>
 
         {/* Explorer split */}
-        <div
-          className="grid items-stretch"
-          style={{
-            gridTemplateColumns: "minmax(320px, 380px) 1fr",
-            gap: 36,
-          }}
-        >
+        <div className="grid items-stretch gap-9 grid-cols-1 lg:[grid-template-columns:minmax(320px,380px)_1fr]">
           {/* Left: stage list */}
           <div className="flex flex-col gap-2.5">
             {STAGES.map((s, i) => {
@@ -238,7 +230,7 @@ export function InteractiveSelector() {
                 <div
                   className="font-mono"
                   style={{
-                    fontSize: 96,
+                    fontSize: "clamp(48px, 10vw, 96px)",
                     lineHeight: 1,
                     color: "rgba(255,255,255,0.18)",
                     fontWeight: 300,
@@ -251,12 +243,7 @@ export function InteractiveSelector() {
 
             {/* Body */}
             <div
-              className="grid flex-1"
-              style={{
-                padding: "32px 32px 36px",
-                gridTemplateColumns: "1.1fr 1fr",
-                gap: 36,
-              }}
+              className="grid flex-1 grid-cols-1 md:[grid-template-columns:1.1fr_1fr] gap-9 p-6 md:p-8 md:pb-9"
             >
               {/* Left column */}
               <div>

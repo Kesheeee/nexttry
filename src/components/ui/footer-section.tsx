@@ -29,21 +29,12 @@ const cols: { h: string; links: { title: string; href: string; external?: boolea
 export function Footer() {
   return (
     <footer
-      style={{
-        paddingBlock: 56,
-        paddingInline: 28,
-        background: "var(--bg)",
-      }}
+      className="py-12 sm:py-14 px-5 sm:px-7"
+      style={{ background: "var(--bg)" }}
     >
       <div
-        className="mx-auto"
-        style={{
-          maxWidth: 1240,
-          display: "grid",
-          gridTemplateColumns: "1.4fr repeat(3, 1fr)",
-          gap: 36,
-          alignItems: "start",
-        }}
+        className="mx-auto grid items-start gap-8 sm:gap-9 grid-cols-1 sm:grid-cols-2 md:grid-cols-4 md:[grid-template-columns:1.4fr_repeat(3,1fr)]"
+        style={{ maxWidth: 1240 }}
       >
         <div>
           <img src="/logo.png" alt="NextTry" style={{ height: 36, width: "auto" }} />

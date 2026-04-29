@@ -7,12 +7,8 @@ export function ContactCTA() {
   return (
     <section
       id="contact"
-      className="relative overflow-hidden border-b"
-      style={{
-        paddingBlock: 130,
-        paddingInline: 28,
-        borderColor: "var(--line)",
-      }}
+      className="relative overflow-hidden border-b py-20 sm:py-28 md:py-32 px-5 sm:px-7"
+      style={{ borderColor: "var(--line)" }}
     >
       <div
         aria-hidden

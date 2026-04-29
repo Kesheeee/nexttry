@@ -31,9 +31,8 @@ function FeaturedPost({ post }: { post: Post }) {
   return (
     <a
       href="#"
-      className="grid overflow-hidden"
+      className="grid overflow-hidden grid-cols-1 md:[grid-template-columns:1.05fr_1fr]"
       style={{
-        gridTemplateColumns: "1.05fr 1fr",
         borderRadius: 28,
         border: "1px solid var(--line)",
         background: "var(--paper)",
@@ -63,8 +62,8 @@ function FeaturedPost({ post }: { post: Post }) {
         </div>
       </div>
       <div
-        className="flex flex-col justify-between"
-        style={{ padding: "48px 52px", gap: 28 }}
+        className="flex flex-col justify-between p-6 md:p-12"
+        style={{ gap: 28 }}
       >
         <div>
           <div
@@ -245,8 +244,8 @@ function Newsletter() {
         }}
       />
       <div
-        className="relative grid items-center mx-auto"
-        style={{ maxWidth: 880, gridTemplateColumns: "1.1fr 1fr", gap: 48 }}
+        className="relative grid items-center mx-auto grid-cols-1 md:[grid-template-columns:1.1fr_1fr] gap-8 md:gap-12"
+        style={{ maxWidth: 880 }}
       >
         <div>
           <div
@@ -338,12 +337,8 @@ export default function BlogPage() {
 
       {/* Header */}
       <section
-        style={{
-          paddingTop: 160,
-          paddingBottom: 56,
-          paddingInline: 28,
-          borderBottom: "1px solid var(--line)",
-        }}
+        className="pt-24 sm:pt-32 md:pt-40 pb-12 md:pb-14 px-5 sm:px-7"
+        style={{ borderBottom: "1px solid var(--line)" }}
       >
         <div className="max-w-[1240px] mx-auto">
           <div
@@ -358,7 +353,7 @@ export default function BlogPage() {
             <span style={{ width: 24, height: 1, background: "var(--ink-3)" }} />
             The NextTry blog
           </div>
-          <div className="flex items-end justify-between flex-wrap gap-8">
+          <div className="flex flex-col md:flex-row md:items-end md:justify-between flex-wrap gap-8">
             <h1
               className="m-0"
               style={{
@@ -402,7 +397,7 @@ export default function BlogPage() {
         className="sticky"
         style={{
           paddingBlock: 24,
-          paddingInline: 28,
+          paddingInline: 16,
           borderTop: "1px solid var(--line)",
           borderBottom: "1px solid var(--line)",
           top: 64,
@@ -498,10 +493,7 @@ export default function BlogPage() {
               No stories in this category yet — check back soon.
             </div>
           ) : (
-            <div
-              className="grid"
-              style={{ gridTemplateColumns: "repeat(3, 1fr)", gap: 24 }}
-            >
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {filtered.map((p) => (
                 <PostCard key={p.id} post={p} />
               ))}
