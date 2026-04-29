@@ -35,7 +35,7 @@ const offers = [
     description: 'Find your mentor. Build your path.',
     image: 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=600&h=350&fit=crop',
     href: '/explore/programs',
-    cta: 'View Events',
+    cta: 'View nSpace',
     accent: '#00b894',     // teal
     accentBg: '#00b894',
   },

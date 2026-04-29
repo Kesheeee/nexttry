@@ -74,7 +74,7 @@ const translations: Record<Lang, Record<string, string>> = {
     'offer.events': 'nSpace',
     'offer.eventsSub': 'Community',
     'offer.eventsDesc': 'Find your mentor. Build your path.',
-    'offer.eventsCta': 'View Events',
+    'offer.eventsCta': 'View nSpace',
     'offer.learnMore': 'Learn more',
 
     // How It Works
@@ -244,7 +244,7 @@ const translations: Record<Lang, Record<string, string>> = {
     'offer.events': 'nSpace',
     'offer.eventsSub': '社群',
     'offer.eventsDesc': '找到你的導師，建立你的道路。',
-    'offer.eventsCta': '查看活動',
+    'offer.eventsCta': '查看 nSpace',
     'offer.learnMore': '了解更多',
 
     // How It Works
