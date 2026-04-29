@@ -28,7 +28,7 @@ const upcomingEvents = [
     accent: '#00b894',
   },
   {
-    title: 'GOLnext Launch Event',
+    title: 'nCall Launch Event',
     date: 'Sat, May 3',
     time: '10:00 AM',
     location: 'Cyberport, HK',
@@ -90,21 +90,21 @@ export default function DashboardPage() {
             </p>
           </motion.div>
 
-          {/* GOLnext prompt */}
+          {/* nCall prompt */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1, ease }}
             className="mb-8"
           >
-            <Link href="/explore/golnext" className="group block">
+            <Link href="https://ncall-nexttry.com" className="group block">
               <div className="rounded-3xl border border-border bg-background p-6 flex items-center gap-5 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300">
                 <div className="w-12 h-12 rounded-3xl bg-primary/10 flex items-center justify-center shrink-0">
                   <Sparkles className="w-5 h-5 text-primary" />
                 </div>
                 <div className="flex-1">
                   <h2 className="text-base font-bold tracking-tight group-hover:text-primary transition-colors">What's on your mind today?</h2>
-                  <p className="text-xs text-muted-foreground mt-0.5">Ask GOLnext — your AI mentor is ready.</p>
+                  <p className="text-xs text-muted-foreground mt-0.5">Ask nCall — your AI mentor is ready.</p>
                 </div>
                 <ArrowRight className="w-5 h-5 text-muted-foreground group-hover:text-primary group-hover:translate-x-1 transition-all" />
               </div>

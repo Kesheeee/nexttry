@@ -2,7 +2,6 @@
 
 import { useEffect, useMemo, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import Link from "next/link";
 import { ChevronDown } from "lucide-react";
 import { ButtonColorful } from "@/components/ui/button-colorful";
 import { useLanguage } from "@/components/ui/language-context";
@@ -45,9 +44,12 @@ function Hero() {
 
       <p className="text-base text-muted-foreground">{t('hero.subtitle')}</p>
 
-      <Link href="/sign-in">
+      <button
+        onClick={() => window.scrollTo({ top: window.innerHeight, behavior: 'smooth' })}
+        className="focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 rounded-full"
+      >
         <ButtonColorful label={t('hero.cta')} />
-      </Link>
+      </button>
 
       <motion.button
         onClick={() => window.scrollTo({ top: window.innerHeight, behavior: 'smooth' })}

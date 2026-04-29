@@ -4,11 +4,10 @@ import { Hero } from '@/components/ui/animated-hero';
 import { InteractiveSelector } from '@/components/ui/interactive-selector';
 import { WhatWeOffer } from '@/components/ui/what-we-offer';
 import { HowItWorks } from '@/components/ui/how-it-works';
-import { SocialProof } from '@/components/ui/social-proof';
-import { CTASection } from '@/components/ui/cta-section';
+import { BlogPreview } from '@/components/ui/blog-preview';
+import { ContactCTA } from '@/components/ui/contact-cta';
 import { Navbar } from '@/components/ui/navbar';
 import { Footer } from '@/components/ui/footer-section';
-import { LogosSlider } from '@/components/ui/logos-slider';
 
 export default function Home() {
   return (
@@ -18,9 +17,6 @@ export default function Home() {
       {/* ── 1. Hero ── */}
       <AuroraBackground>
         <Hero />
-        <div className="absolute -bottom-64 left-0 right-0 z-10">
-          <LogosSlider />
-        </div>
       </AuroraBackground>
 
       {/* Hero → Stages transition */}
@@ -40,16 +36,11 @@ export default function Home() {
       {/* ── 4. How it works ── */}
       <HowItWorks />
 
-      {/* How → Social proof divider */}
-      <div className="max-w-5xl mx-auto px-8">
-        <div className="h-px bg-gradient-to-r from-transparent via-border to-transparent" />
-      </div>
+      {/* ── 5. Blog ── */}
+      <BlogPreview />
 
-      {/* ── 5. Social proof ── */}
-      <SocialProof />
-
-      {/* ── 6. CTA ── */}
-      <CTASection />
+      {/* ── 6. Contact CTA ── */}
+      <ContactCTA />
 
       {/* ── 7. Footer ── */}
       <Footer />

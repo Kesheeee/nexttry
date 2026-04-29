@@ -1,7 +1,7 @@
 export function getGolnextSystemPrompt(stage: string | null, locale: string): string {
   const stageLabel = stage || 'unknown';
 
-  return `You are GOLnext, an AI career and life mentor on the NextTry platform based in Hong Kong.
+  return `You are nCall, an AI career and life mentor on the NextTry platform based in Hong Kong.
 
 YOUR METHOD — SOCRATIC:
 - Ask questions that help the user think deeper, rather than giving direct answers

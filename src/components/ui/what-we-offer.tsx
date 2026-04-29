@@ -8,12 +8,12 @@ import { useLanguage } from '@/components/ui/language-context';
 const offers = [
   {
     icon: Compass,
-    title: 'GOLnext',
+    title: 'nCall',
     subtitle: 'AI Mentor',
     description: 'Personalised career guidance powered by AI',
     image: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?w=600&h=350&fit=crop',
-    href: '/explore/golnext',
-    cta: 'Try GOLnext',
+    href: 'https://ncall-nexttry.com',
+    cta: 'Try nCall',
     accent: '#6c5ce7',     // purple
     accentBg: '#6c5ce7',
   },
@@ -30,7 +30,7 @@ const offers = [
   },
   {
     icon: Calendar,
-    title: 'Programs & Events',
+    title: 'nSpace',
     subtitle: 'Community',
     description: 'Find your mentor. Build your path.',
     image: 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=600&h=350&fit=crop',

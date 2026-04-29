@@ -190,7 +190,7 @@ const CustomDivider = () => (
 interface PromptInputBoxProps { onSend?: (message: string, files?: File[]) => void; isLoading?: boolean; placeholder?: string; className?: string; }
 
 export const PromptInputBox = React.forwardRef<HTMLDivElement, PromptInputBoxProps>((props, ref) => {
-  const { onSend = () => {}, isLoading = false, placeholder = "Ask GOLnext anything...", className } = props;
+  const { onSend = () => {}, isLoading = false, placeholder = "Ask nCall anything...", className } = props;
   const [input, setInput] = React.useState("");
   const [files, setFiles] = React.useState<File[]>([]);
   const [filePreviews, setFilePreviews] = React.useState<Record<string, string>>({});

@@ -26,7 +26,7 @@ const testimonials = [
     accent: "#e17055",
   },
   {
-    text: "GOLnext gave me clarity I couldn't find anywhere else. It felt like someone finally understood my situation.",
+    text: "nCall gave me clarity I couldn't find anywhere else. It felt like someone finally understood my situation.",
     image: "https://randomuser.me/api/portraits/men/75.jpg",
     name: "Jason Ho",
     role: "Secondary school student",

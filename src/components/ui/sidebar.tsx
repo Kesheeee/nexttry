@@ -10,7 +10,7 @@ import { AnimatePresence, motion } from 'framer-motion';
 
 const topIcons = [
   { icon: Home, key: 'side.home', href: '/dashboard' },
-  { icon: Compass, key: 'side.golnext', href: '/explore/golnext' },
+  { icon: Compass, key: 'side.golnext', href: 'https://ncall-nexttry.com' },
   { icon: Users, key: 'side.connects', href: '/dashboard/connects' },
   { icon: Calendar, key: 'side.programs', href: '/explore/programs' },
 ];

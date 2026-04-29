@@ -13,9 +13,9 @@ const NAV_ITEMS = [
     label: "Explore",
     href: null,
     dropdown: [
-      { label: "GOLnext",  href: "/explore/golnext"  },
+      { label: "nCall",  href: "https://ncall-nexttry.com"  },
       { label: "Podcast",  href: "/explore/podcast"  },
-      { label: "Programs & Events", href: "/explore/programs" },
+      { label: "nSpace", href: "/explore/programs" },
     ],
   },
   {
@@ -24,13 +24,9 @@ const NAV_ITEMS = [
     dropdown: null,
   },
   {
-    label: "About Us",
-    href: null,
-    dropdown: [
-      { label: "Our Story",  href: "/about"          },
-      { label: "Team",       href: "/about/team"     },
-      { label: "Contact Us", href: "/about/contact"  },
-    ],
+    label: "Contact Us",
+    href: "/about/contact",
+    dropdown: null,
   },
 ]
 
@@ -54,7 +50,7 @@ function DropdownMenu({ items }: { items: { label: string; href: string }[] }) {
           <li key={item.label}>
             <Link
               href={item.href}
-              className="block text-sm font-bold uppercase tracking-wide px-4 py-2 text-foreground hover:text-primary transition-colors"
+              className="block text-sm font-bold tracking-wide px-4 py-2 text-foreground hover:text-primary transition-colors"
             >
               {item.label}
             </Link>
@@ -112,9 +108,9 @@ export function Navbar({ minimal = false }: { minimal?: boolean }) {
       <div className="w-full px-8 h-16 flex items-center justify-between">
 
         {/* Logo */}
-        <Link href={session?.user ? "/dashboard" : "/"} className={`text-lg font-semibold hover:opacity-80 transition-all duration-300 ${onDark ? "text-white" : "text-foreground"}`}>
+        <a href="/" className={`text-lg font-semibold hover:opacity-80 transition-all duration-300 ${onDark ? "text-white" : "text-foreground"}`}>
           NextTry
-        </Link>
+        </a>
 
         {/* Right side */}
         {session?.user ? (
@@ -226,34 +222,41 @@ export function Navbar({ minimal = false }: { minimal?: boolean }) {
                     if (item.dropdown) scheduleClose()
                   }}
                 >
-                  <button
-                    className={`relative z-10 flex items-center gap-1.5 text-sm font-bold uppercase tracking-wide px-4 py-2 rounded-xl hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:rounded-xl transition-all duration-300 ${onDark ? "text-white" : "text-foreground"} ${
-                      (item.href && pathname === item.href) ||
-                      (item.dropdown && item.dropdown.some(d => pathname.startsWith(d.href)))
-                        ? "text-primary"
-                        : ""
-                    }`}
-                    aria-expanded={item.dropdown ? openIndex === i : undefined}
-                    aria-haspopup={item.dropdown ? "true" : undefined}
-                    onClick={() => {
-                      if (!item.dropdown) return
-                      setOpenIndex(openIndex === i ? null : i)
-                    }}
-                  >
-                    {item.href && !item.dropdown
-                      ? <Link href={item.href} className="contents">{item.label}</Link>
-                      : item.label
-                    }
-                    {item.dropdown && (
-                      <motion.span
-                        animate={{ rotate: openIndex === i ? 180 : 0 }}
-                        transition={{ duration: 0.2 }}
-                        className="flex"
-                      >
-                        <ChevronDown className="w-3.5 h-3.5" />
-                      </motion.span>
-                    )}
-                  </button>
+                  {item.href && !item.dropdown ? (
+                    <Link
+                      href={item.href}
+                      className={`relative z-10 flex items-center gap-1.5 text-sm font-bold uppercase tracking-wide px-4 py-2 rounded-xl hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:rounded-xl transition-all duration-300 ${onDark ? "text-white" : "text-foreground"} ${
+                        pathname === item.href ? "text-primary" : ""
+                      }`}
+                    >
+                      {item.label}
+                    </Link>
+                  ) : (
+                    <button
+                      className={`relative z-10 flex items-center gap-1.5 text-sm font-bold uppercase tracking-wide px-4 py-2 rounded-xl hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:rounded-xl transition-all duration-300 ${onDark ? "text-white" : "text-foreground"} ${
+                        item.dropdown && item.dropdown.some(d => pathname.startsWith(d.href))
+                          ? "text-primary"
+                          : ""
+                      }`}
+                      aria-expanded={item.dropdown ? openIndex === i : undefined}
+                      aria-haspopup={item.dropdown ? "true" : undefined}
+                      onClick={() => {
+                        if (!item.dropdown) return
+                        setOpenIndex(openIndex === i ? null : i)
+                      }}
+                    >
+                      {item.label}
+                      {item.dropdown && (
+                        <motion.span
+                          animate={{ rotate: openIndex === i ? 180 : 0 }}
+                          transition={{ duration: 0.2 }}
+                          className="flex"
+                        >
+                          <ChevronDown className="w-3.5 h-3.5" />
+                        </motion.span>
+                      )}
+                    </button>
+                  )}
 
                   {item.dropdown && openIndex === i && (
                     <DropdownMenu items={item.dropdown} />
@@ -271,12 +274,6 @@ export function Navbar({ minimal = false }: { minimal?: boolean }) {
                 <Globe className="w-4 h-4" />
                 {currentLang === 'en' ? 'EN' : '中文'}
               </button>
-              <Link
-                href="/sign-in"
-                className={`text-sm font-bold uppercase tracking-wide px-4 py-2 rounded-xl hover:text-primary hover:bg-primary/10 transition-all duration-300 ${onDark ? "text-white" : "text-foreground"}`}
-              >
-                Log In
-              </Link>
             </div>
 
           </div>

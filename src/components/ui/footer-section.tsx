@@ -18,9 +18,9 @@ const footerLinks: FooterSection[] = [
   {
     label: 'Explore',
     links: [
-      { title: 'GOLnext',  href: '/explore/golnext'  },
-      { title: 'Podcast',  href: '/explore/podcast'  },
-      { title: 'Programs', href: '/explore/programs' },
+      { title: 'nCall',   href: 'https://ncall-nexttry.com'  },
+      { title: 'Podcast', href: '/explore/podcast'  },
+      { title: 'nSpace',  href: '/explore/programs' },
     ],
   },
   {
@@ -28,7 +28,7 @@ const footerLinks: FooterSection[] = [
     links: [
       { title: 'Our Story',      href: '/about'          },
       { title: 'Team',           href: '/about/team'     },
-      { title: 'Contact',        href: '/about/contact'  },
+      { title: 'Contact Us',     href: '/about/contact'  },
       { title: 'Privacy Policy', href: '/privacy'        },
     ],
   },
