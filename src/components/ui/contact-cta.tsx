@@ -43,7 +43,7 @@ export function ContactCTA() {
         >
           Every stage. Every question.
           <br />
-          Every <span style={{ color: "var(--coral)" }}>next step</span>.
+          Every <span style={{ color: "var(--coral)" }}>next step.</span>
         </h2>
         <p
           className="mx-auto"

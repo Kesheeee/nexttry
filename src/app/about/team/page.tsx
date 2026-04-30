@@ -1,5 +1,10 @@
+import type { Metadata } from "next";
 import { Navbar } from "@/components/ui/navbar";
 import { Footer } from "@/components/ui/footer-section";
+
+export const metadata: Metadata = {
+  title: "Team",
+};
 
 export default function Page() {
   return (

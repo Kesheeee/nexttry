@@ -365,7 +365,7 @@ export default function BlogPage() {
                 textWrap: "balance" as const,
               }}
             >
-              Stories from <span style={{ color: "var(--coral)" }}>every chapter</span>.
+              Stories from <span style={{ color: "var(--coral)" }}>every chapter.</span>
             </h1>
             <p
               className="m-0 max-w-[360px]"

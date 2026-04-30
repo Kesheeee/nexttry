@@ -1,6 +1,11 @@
+import type { Metadata } from "next";
 import { Calendar } from "lucide-react";
 import { Navbar } from "@/components/ui/navbar";
 import { Footer } from "@/components/ui/footer-section";
+
+export const metadata: Metadata = {
+  title: "nSpace",
+};
 
 export default function ProgramsPage() {
   return (

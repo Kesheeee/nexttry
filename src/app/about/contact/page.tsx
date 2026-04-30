@@ -1,6 +1,11 @@
+import type { Metadata } from "next";
 import { Contact2 } from "@/components/ui/contact-2";
 import { Navbar } from "@/components/ui/navbar";
 import { Footer } from "@/components/ui/footer-section";
+
+export const metadata: Metadata = {
+  title: "Contact Us",
+};
 
 export default function ContactRoute() {
   return (

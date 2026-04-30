@@ -52,7 +52,7 @@ function Hero() {
             textWrap: "balance" as const,
           }}
         >
-          Your <span style={{ color: "var(--coral)" }}>next step</span>,
+          Your <span style={{ color: "var(--coral)" }}>next step,</span>
           <br />
           at every stage of life.
         </h1>

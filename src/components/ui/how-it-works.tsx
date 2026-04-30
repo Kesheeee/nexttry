@@ -62,7 +62,9 @@ export function HowItWorks() {
               textWrap: "balance" as const,
             }}
           >
-            <span style={{ color: "var(--coral)" }}>Three steps.</span> One chapter at a time.
+            <span style={{ color: "var(--coral)" }}>Three steps.</span>
+            <br />
+            One chapter at a time.
           </h2>
         </div>
 

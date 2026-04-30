@@ -38,14 +38,13 @@ const mono = JetBrains_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default: "NextTry — Every stage. Every question. Every next step.",
-    template: "%s | NextTry",
+    default: "NextTry",
+    template: "NextTry · %s",
   },
   description:
     "Mentorship for every chapter of life — through AI conversations, real podcast stories, and a human community.",
   openGraph: {
     title: "NextTry",
-    description: "Wherever you are in life — NextTry is here.",
     siteName: "NextTry",
     locale: "en_HK",
     type: "website",

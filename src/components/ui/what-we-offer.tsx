@@ -258,7 +258,7 @@ export function WhatWeOffer() {
             >
               Three ways
               <br />
-              to find your <span style={{ color: "var(--coral)" }}>guide</span>.
+              to find your <span style={{ color: "var(--coral)" }}>guide.</span>
             </h2>
             <p
               className="mt-5 max-w-[520px]"
