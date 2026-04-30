@@ -11,7 +11,7 @@ const cards = [
     label: "nCall",
     tag: "START — AI MENTORSHIP",
     tagline: "Open the conversation.",
-    desc: "1-on-1 mentorship on demand. nCall asks the questions a great mentor would — about values, fears, options, trade-offs — so you can name what you're really feeling before anyone else weighs in.",
+    desc: "Talk to an AI mentor anytime. It asks the questions a real mentor would.",
     cta: "Start with nCall",
     href: "https://ncall-nexttry.com",
     external: true,
@@ -24,7 +24,7 @@ const cards = [
     label: "The Fourth Relationship",
     tag: "LISTEN — PODCAST MENTORSHIP",
     tagline: "Hear how others did it.",
-    desc: "A weekly podcast about the mentors who change us — beyond family, friends, and partners. Real stories that show you what the bridge looks like before you cross it yourself.",
+    desc: "Weekly stories about the mentors who change us — beyond family, friends, and partners.",
     cta: "Listen now",
     href: "https://www.youtube.com/@the4threlationships",
     external: true,
@@ -36,8 +36,8 @@ const cards = [
     Icon: Users,
     label: "nSpace",
     tag: "MEET — HUMAN MENTORSHIP",
-    tagline: "Cross the bridge. Meet a real human.",
-    desc: "When you're ready, nSpace matches you with a real person who's stood exactly where you're standing. Calls, messages, and small cohorts — mentorship by humans, the way it was always meant to be.",
+    tagline: "Meet a real mentor.",
+    desc: "Get matched with someone who's stood exactly where you're standing. Calls, messages, small groups.",
     cta: "Explore nSpace",
     href: "/explore/programs",
     external: false,
@@ -256,17 +256,15 @@ export function WhatWeOffer() {
                 textWrap: "balance" as const,
               }}
             >
-              From an AI conversation
+              Three ways
               <br />
-              <span className="italic" style={{ fontFamily: "var(--font-display)" }}>to a real human guide.</span>
+              to find your <span style={{ color: "var(--coral)" }}>guide</span>.
             </h2>
             <p
               className="mt-5 max-w-[520px]"
               style={{ fontSize: 15, lineHeight: 1.55, color: "var(--ink-2)" }}
             >
-              Mentorship rarely starts with a perfect match. It starts with a question. NextTry
-              is the bridge — three steps, all built around the mentee, that take you from the
-              first quiet conversation to the real human who&apos;ll stand next to you.
+              Three steps from a question to the right mentor.
             </p>
           </div>
         </div>

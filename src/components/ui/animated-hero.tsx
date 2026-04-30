@@ -15,13 +15,13 @@ function Hero() {
       className="relative overflow-hidden border-b pt-24 sm:pt-32 md:pt-40 pb-16 sm:pb-24 md:pb-28 px-5 sm:px-7"
       style={{ borderColor: "var(--line)" }}
     >
-      {/* Soft warm wash in the corners */}
+      {/* Warm wash in the corners */}
       <div
         aria-hidden
         className="pointer-events-none absolute inset-0"
         style={{
           background:
-            "radial-gradient(60% 40% at 12% 10%, rgba(232,98,77,0.10), transparent 70%), radial-gradient(50% 40% at 90% 0%, rgba(91,75,224,0.08), transparent 70%)",
+            "radial-gradient(70% 55% at 10% 5%, rgba(232,98,77,0.28), transparent 70%), radial-gradient(60% 55% at 95% 0%, rgba(91,75,224,0.22), transparent 70%), radial-gradient(80% 70% at 50% 110%, rgba(232,154,30,0.32), transparent 70%), radial-gradient(70% 50% at 20% 100%, rgba(232,98,77,0.22), transparent 70%), radial-gradient(70% 50% at 80% 100%, rgba(91,75,224,0.18), transparent 70%)",
         }}
       />
 
@@ -52,11 +52,7 @@ function Hero() {
             textWrap: "balance" as const,
           }}
         >
-          Your{" "}
-          <span className="italic" style={{ fontFamily: "var(--font-display)", fontWeight: 400 }}>
-            next step
-          </span>
-          ,
+          Your <span style={{ color: "var(--coral)" }}>next step</span>,
           <br />
           at every stage of life.
         </h1>
@@ -71,9 +67,7 @@ function Hero() {
             textWrap: "pretty" as const,
           }}
         >
-          NextTry is a bridge to mentorship. Start a conversation with an AI mentor today,
-          hear how others walked the same path, and — when you&apos;re ready — meet a real human
-          who&apos;s stood exactly where you&apos;re standing.
+          A bridge to mentorship — through AI, podcast stories, and real human guides.
         </p>
 
         {/* CTA row */}

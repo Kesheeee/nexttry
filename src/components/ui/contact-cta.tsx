@@ -43,7 +43,7 @@ export function ContactCTA() {
         >
           Every stage. Every question.
           <br />
-          <span className="italic" style={{ fontFamily: "var(--font-display)" }}>Every next step.</span>
+          Every <span style={{ color: "var(--coral)" }}>next step</span>.
         </h2>
         <p
           className="mx-auto"
@@ -55,8 +55,7 @@ export function ContactCTA() {
             lineHeight: 1.5,
           }}
         >
-          Drop us a line — feedback, partnership ideas, or you just want to say hi.
-          Someone from the team will get back to you.
+          Got a question? We&apos;d love to hear from you.
         </p>
         <div className="mt-9 inline-flex flex-wrap gap-3 justify-center">
           <a

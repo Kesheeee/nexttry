@@ -89,17 +89,15 @@ export function InteractiveSelector() {
             >
               The questions change.
               <br />
-              <span className="italic" style={{ fontFamily: "var(--font-display)", fontWeight: 400 }}>
-                The need for a guide doesn&apos;t.
-              </span>
+              The need for a <span style={{ color: "var(--coral)" }}>guide</span>{" "}
+              doesn&apos;t.
             </h2>
           </div>
           <p
             className="m-0 max-w-[360px]"
             style={{ color: "var(--ink-2)", fontSize: 15, lineHeight: 1.55 }}
           >
-            Pick the chapter you&apos;re in. We&apos;ll show you what people actually wrestle with there
-            — and how NextTry helps.
+            Pick your chapter. See what people are asking — and how we help.
           </p>
         </div>
 
@@ -361,9 +359,8 @@ export function InteractiveSelector() {
               textUnderlineOffset: 4,
             }}
           >
-            Start with nCall — it&apos;ll help you figure it out
+            Start with nCall.
           </a>
-          .
         </div>
       </div>
     </section>

@@ -270,10 +270,7 @@ function Newsletter() {
               textWrap: "balance" as const,
             }}
           >
-            One story a week.{" "}
-            <span className="italic" style={{ fontFamily: "var(--font-display)" }}>
-              No noise.
-            </span>
+            One story a week. No noise.
           </h2>
         </div>
         <form
@@ -368,17 +365,13 @@ export default function BlogPage() {
                 textWrap: "balance" as const,
               }}
             >
-              Stories from{" "}
-              <span className="italic" style={{ fontFamily: "var(--font-display)" }}>
-                every chapter.
-              </span>
+              Stories from <span style={{ color: "var(--coral)" }}>every chapter</span>.
             </h1>
             <p
               className="m-0 max-w-[360px]"
               style={{ fontSize: 16, lineHeight: 1.5, color: "var(--ink-2)" }}
             >
-              Essays, interviews, and notes from the team — for whichever stage you&apos;re
-              standing in right now.
+              Essays and interviews for every stage of life.
             </p>
           </div>
         </div>
@@ -413,9 +406,7 @@ export default function BlogPage() {
             >
               Our first stories
               <br />
-              <span className="italic" style={{ fontFamily: "var(--font-display)" }}>
-                are on their way.
-              </span>
+              are on their way.
             </h2>
             <p
               className="mx-auto mt-6"
@@ -426,9 +417,7 @@ export default function BlogPage() {
                 color: "var(--ink-2)",
               }}
             >
-              We&apos;re writing essays, interviewing mentors, and pulling together the kinds of
-              stories you&apos;d actually want to read at every chapter of life. Subscribe below
-              and we&apos;ll let you know when the first one lands.
+              Subscribe below and we&apos;ll let you know when the first one lands.
             </p>
           </div>
         </section>

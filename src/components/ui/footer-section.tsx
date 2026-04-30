@@ -7,7 +7,7 @@ const cols: { h: string; links: { title: string; href: string; external?: boolea
     h: "Explore",
     links: [
       { title: "nCall", href: "https://ncall-nexttry.com", external: true },
-      { title: "Podcast", href: "/explore/podcast" },
+      { title: "Podcast", href: "https://www.youtube.com/@the4threlationships", external: true },
       { title: "nSpace", href: "/explore/programs" },
     ],
   },

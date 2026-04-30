@@ -7,21 +7,21 @@ const steps = [
   {
     n: "01",
     title: "Tell us where you are.",
-    body: "A few minutes with nCall — or just pick a stage. We'll understand your chapter and what you're actually wrestling with.",
+    body: "Pick a stage or chat with nCall. We figure out what you're really wrestling with.",
     Icon: Compass,
     color: ACCENT_HEX.indigo,
   },
   {
     n: "02",
     title: "Meet your people.",
-    body: "Get matched with mentors who've been exactly here. Listen to stories from people a chapter ahead. Find your cohort.",
+    body: "Get matched with mentors who've been exactly here. Hear stories from a chapter ahead.",
     Icon: Users,
     color: ACCENT_HEX.amber,
   },
   {
     n: "03",
     title: "Take your next step.",
-    body: "Move forward with clarity, not just confidence. Then come back when the next question shows up — because it will.",
+    body: "Move forward with clarity. Come back when the next question shows up.",
     Icon: Flag,
     color: ACCENT_HEX.coral,
   },
@@ -62,7 +62,7 @@ export function HowItWorks() {
               textWrap: "balance" as const,
             }}
           >
-            Three steps. <span className="italic" style={{ fontFamily: "var(--font-display)" }}>One chapter at a time.</span>
+            <span style={{ color: "var(--coral)" }}>Three steps.</span> One chapter at a time.
           </h2>
         </div>
 
