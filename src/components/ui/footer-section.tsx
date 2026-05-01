@@ -37,7 +37,7 @@ export function Footer() {
         style={{ maxWidth: 1240 }}
       >
         <div>
-          <img src="/logo.png" alt="NextTry" style={{ height: 36, width: "auto" }} />
+          <img src="/logo.png" alt="NextTry" style={{ height: 32, width: "auto" }} />
           <p
             className="m-0 mt-3"
             style={{ fontSize: 13, color: "var(--ink-3)", lineHeight: 1.6, maxWidth: 320 }}

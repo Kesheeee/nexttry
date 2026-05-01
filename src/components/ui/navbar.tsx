@@ -47,7 +47,7 @@ export function Navbar({ minimal = false }: { minimal?: boolean } = {}) {
           <img
             src="/logo.png"
             alt="NextTry"
-            style={{ height: 28, width: "auto", display: "block" }}
+            style={{ height: 24, width: "auto", display: "block" }}
           />
         </a>
 
