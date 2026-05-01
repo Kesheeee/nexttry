@@ -182,13 +182,17 @@ export const Contact2 = ({
   email = "hello@nexttry.hk",
 }: Contact2Props) => {
   return (
-    <section className="min-h-screen flex items-center py-24 relative overflow-hidden">
+    <section className="min-h-screen flex items-center py-24 relative overflow-hidden bg-background">
 
-      {/* Aurora glow */}
-      <div className="pointer-events-none absolute inset-0 overflow-hidden">
-        <div className="absolute -top-40 -right-40 w-[600px] h-[600px] rounded-full bg-primary/25 blur-[100px]" />
-        <div className="absolute -bottom-40 -left-40 w-[500px] h-[500px] rounded-full bg-indigo-400/25 blur-[90px]" />
-      </div>
+      {/* Soft warm wash matching the home hero */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0"
+        style={{
+          background:
+            "radial-gradient(60% 50% at 0% 0%, rgba(232,98,77,0.18), transparent 70%), radial-gradient(60% 50% at 100% 0%, rgba(91,75,224,0.14), transparent 70%), radial-gradient(70% 50% at 50% 100%, rgba(232,154,30,0.16), transparent 70%)",
+        }}
+      />
 
       <div className="relative mx-auto w-full max-w-4xl px-8">
         <div className="flex flex-col gap-12 lg:flex-row lg:gap-16 lg:items-start">
