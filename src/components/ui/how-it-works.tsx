@@ -1,7 +1,10 @@
 "use client";
 
+import { motion } from "framer-motion";
 import { Compass, Users, Flag } from "lucide-react";
 import { ACCENT_HEX } from "@/lib/site-data";
+
+const ease = [0.22, 1, 0.36, 1] as const;
 
 const steps = [
   {
@@ -49,7 +52,7 @@ export function HowItWorks() {
             }}
           >
             <span style={{ width: 24, height: 1, background: "var(--ink-3)" }} />
-            03 — How it works
+            03 · How it works
           </div>
           <h2
             className="m-0"
@@ -77,13 +80,17 @@ export function HowItWorks() {
           }}
         >
           {steps.map((s, i) => (
-            <div
+            <motion.div
               key={s.n}
               className={`flex flex-col gap-3.5 p-7 md:p-8 ${i < 2 ? "border-b md:border-b-0 md:border-r" : ""}`}
               style={{
                 borderColor: "var(--line)",
                 minHeight: 200,
               }}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-60px" }}
+              transition={{ duration: 0.55, delay: i * 0.12, ease }}
             >
               <div className="flex items-center justify-between">
                 <span
@@ -120,7 +127,7 @@ export function HowItWorks() {
               <p className="m-0" style={{ fontSize: 14.5, lineHeight: 1.5, color: "var(--ink-2)" }}>
                 {s.body}
               </p>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>

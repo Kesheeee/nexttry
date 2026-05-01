@@ -21,7 +21,7 @@ export default function ProgramsPage() {
             Coming Soon
           </h1>
           <p className="mt-6 text-muted-foreground max-w-md leading-relaxed">
-            We&apos;re building nSpace — a place for mentor circles, live events, and real
+            We&apos;re building nSpace. A place for mentor circles, live events, and real
             conversations. Check back soon.
           </p>
         </section>

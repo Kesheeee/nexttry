@@ -533,7 +533,7 @@ export default function BlogPage() {
                 fontSize: 15,
               }}
             >
-              No stories in this category yet — check back soon.
+              No stories in this category yet. Check back soon.
             </div>
           ) : (
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">

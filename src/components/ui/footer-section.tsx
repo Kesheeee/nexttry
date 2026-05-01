@@ -42,7 +42,7 @@ export function Footer() {
             className="m-0 mt-3"
             style={{ fontSize: 13, color: "var(--ink-3)", lineHeight: 1.6, maxWidth: 320 }}
           >
-            Wherever you are in life — NextTry is here.
+            Wherever you are in life, NextTry is here.
             <br />
             Every stage. Every question. Every next step.
           </p>

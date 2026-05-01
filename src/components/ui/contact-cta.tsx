@@ -1,7 +1,10 @@
 "use client";
 
 import Link from "next/link";
+import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
+
+const ease = [0.22, 1, 0.36, 1] as const;
 
 export function ContactCTA() {
   return (
@@ -18,7 +21,13 @@ export function ContactCTA() {
             "radial-gradient(50% 60% at 0% 50%, rgba(91,75,224,0.08), transparent 70%), radial-gradient(50% 60% at 100% 50%, rgba(232,98,77,0.08), transparent 70%)",
         }}
       />
-      <div className="relative max-w-[980px] mx-auto text-center">
+      <motion.div
+        className="relative max-w-[980px] mx-auto text-center"
+        initial={{ opacity: 0, y: 24 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-80px" }}
+        transition={{ duration: 0.7, ease }}
+      >
         <div
           className="font-mono mb-5"
           style={{
@@ -86,7 +95,7 @@ export function ContactCTA() {
             Contact the team
           </Link>
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 }

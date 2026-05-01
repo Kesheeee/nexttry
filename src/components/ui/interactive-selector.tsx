@@ -1,8 +1,11 @@
 "use client";
 
 import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { ChevronRight, Quote, Check, Sparkles, Mic, Users } from "lucide-react";
 import { STAGES, ACCENT_HEX, PRODUCTS, type ProductId } from "@/lib/site-data";
+
+const ease = [0.22, 1, 0.36, 1] as const;
 
 const productIcons: Record<"spark" | "mic" | "users", typeof Sparkles> = {
   spark: Sparkles,
@@ -62,7 +65,13 @@ export function InteractiveSelector() {
     >
       <div className="max-w-[1240px] mx-auto">
         {/* Heading */}
-        <div className="flex flex-col md:flex-row md:items-end md:justify-between flex-wrap gap-6 mb-10 md:mb-14">
+        <motion.div
+          className="flex flex-col md:flex-row md:items-end md:justify-between flex-wrap gap-6 mb-10 md:mb-14"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-80px" }}
+          transition={{ duration: 0.7, ease }}
+        >
           <div className="max-w-[720px]">
             <div
               className="font-mono inline-flex items-center gap-2.5 mb-4"
@@ -74,7 +83,7 @@ export function InteractiveSelector() {
               }}
             >
               <span style={{ width: 24, height: 1, background: "var(--ink-3)" }} />
-              01 — Find your stage
+              01 · Find your stage
             </div>
             <h2
               className="m-0"
@@ -97,9 +106,9 @@ export function InteractiveSelector() {
             className="m-0 max-w-[360px]"
             style={{ color: "var(--ink-2)", fontSize: 15, lineHeight: 1.55 }}
           >
-            Pick your chapter. See what people are asking — and how we help.
+            Pick your chapter. See what people are asking, and how we help.
           </p>
-        </div>
+        </motion.div>
 
         {/* Explorer split */}
         <div className="grid items-stretch gap-9 grid-cols-1 lg:[grid-template-columns:minmax(320px,380px)_1fr]">
@@ -167,7 +176,9 @@ export function InteractiveSelector() {
           </div>
 
           {/* Right: tailored content */}
-          <div
+          <AnimatePresence mode="wait">
+          <motion.div
+            key={active.id}
             className="relative overflow-hidden flex flex-col"
             style={{
               border: "1px solid var(--line)",
@@ -175,6 +186,10 @@ export function InteractiveSelector() {
               background: "var(--bg)",
               minHeight: 560,
             }}
+            initial={{ opacity: 0, y: 8 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -8 }}
+            transition={{ duration: 0.35, ease }}
           >
             {/* Image header */}
             <div
@@ -345,7 +360,8 @@ export function InteractiveSelector() {
 
               </div>
             </div>
-          </div>
+          </motion.div>
+          </AnimatePresence>
         </div>
 
         {/* Bottom CTA */}

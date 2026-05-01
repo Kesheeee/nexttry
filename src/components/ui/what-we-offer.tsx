@@ -1,7 +1,10 @@
 "use client";
 
+import { motion } from "framer-motion";
 import { ArrowUpRight, Sparkles, Mic, Users, Play } from "lucide-react";
 import { ACCENT_HEX } from "@/lib/site-data";
+
+const ease = [0.22, 1, 0.36, 1] as const;
 
 const cards = [
   {
@@ -9,7 +12,7 @@ const cards = [
     step: "01",
     Icon: Sparkles,
     label: "nCall",
-    tag: "START — AI MENTORSHIP",
+    tag: "START · AI MENTORSHIP",
     tagline: "Open the conversation.",
     desc: "Talk to an AI mentor anytime. It asks the questions a real mentor would.",
     cta: "Start with nCall",
@@ -22,9 +25,9 @@ const cards = [
     step: "02",
     Icon: Mic,
     label: "The Fourth Relationship",
-    tag: "LISTEN — PODCAST MENTORSHIP",
+    tag: "LISTEN · PODCAST MENTORSHIP",
     tagline: "Hear how others did it.",
-    desc: "Weekly stories about the mentors who change us — beyond family, friends, and partners.",
+    desc: "Weekly stories about the mentors who change us. Beyond family, friends, and partners.",
     cta: "Listen now",
     href: "https://www.youtube.com/@the4threlationships",
     external: true,
@@ -35,7 +38,7 @@ const cards = [
     step: "03",
     Icon: Users,
     label: "nSpace",
-    tag: "MEET — HUMAN MENTORSHIP",
+    tag: "MEET · HUMAN MENTORSHIP",
     tagline: "Meet a real mentor.",
     desc: "Get matched with someone who's stood exactly where you're standing. Calls, messages, small groups.",
     cta: "Explore nSpace",
@@ -243,7 +246,7 @@ export function WhatWeOffer() {
               }}
             >
               <span style={{ width: 24, height: 1, background: "var(--ink-3)" }} />
-              02 — The mentorship bridge
+              02 · The mentorship bridge
             </div>
             <h2
               className="m-0"
@@ -270,8 +273,8 @@ export function WhatWeOffer() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {cards.map((c) => (
-            <article
+          {cards.map((c, i) => (
+            <motion.article
               key={c.id}
               className="flex flex-col gap-5"
               style={{
@@ -280,6 +283,10 @@ export function WhatWeOffer() {
                 borderRadius: 24,
                 padding: 28,
               }}
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-80px" }}
+              transition={{ duration: 0.6, delay: i * 0.12, ease }}
             >
               <header>
                 <div className="flex items-center justify-between mb-4">
@@ -339,7 +346,7 @@ export function WhatWeOffer() {
               >
                 {c.cta} <ArrowUpRight size={14} strokeWidth={2} />
               </a>
-            </article>
+            </motion.article>
           ))}
         </div>
       </div>

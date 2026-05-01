@@ -1,5 +1,6 @@
 "use client";
 
+import { motion } from "framer-motion";
 import { ArrowRight, Sparkles, Mic, Users } from "lucide-react";
 
 const products = [
@@ -8,6 +9,8 @@ const products = [
   { Icon: Users, label: "nSpace", desc: "Mentorship, in community", color: "var(--teal)" },
 ];
 
+const ease = [0.22, 1, 0.36, 1] as const;
+
 function Hero() {
   return (
     <section
@@ -15,7 +18,7 @@ function Hero() {
       className="relative overflow-hidden border-b pt-24 sm:pt-32 md:pt-40 pb-16 sm:pb-24 md:pb-28 px-5 sm:px-7"
       style={{ borderColor: "var(--line)" }}
     >
-      {/* Warm wash in the corners */}
+      {/* Warm wash in the corners — static (animating gradients is expensive) */}
       <div
         aria-hidden
         className="pointer-events-none absolute inset-0"
@@ -27,7 +30,7 @@ function Hero() {
 
       <div className="relative max-w-[1240px] mx-auto">
         {/* Eyebrow */}
-        <div
+        <motion.div
           className="font-mono inline-flex items-center gap-2.5 mb-7"
           style={{
             fontSize: 11,
@@ -35,13 +38,16 @@ function Hero() {
             textTransform: "uppercase",
             color: "var(--ink-3)",
           }}
+          initial={{ opacity: 0, y: 8 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, ease }}
         >
           <span className="block" style={{ width: 24, height: 1, background: "var(--ink-3)" }} />
           A mentorship platform for every chapter of life
-        </div>
+        </motion.div>
 
         {/* Headline */}
-        <h1
+        <motion.h1
           className="m-0 max-w-[1100px]"
           style={{
             fontSize: "clamp(48px, 7.6vw, 116px)",
@@ -51,14 +57,17 @@ function Hero() {
             color: "var(--ink)",
             textWrap: "balance" as const,
           }}
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.1, ease }}
         >
           Your <span style={{ color: "var(--coral)" }}>next step,</span>
           <br />
           at every stage of life.
-        </h1>
+        </motion.h1>
 
         {/* Subtitle */}
-        <p
+        <motion.p
           className="mt-8 mb-0 max-w-[640px]"
           style={{
             fontSize: 19,
@@ -66,15 +75,23 @@ function Hero() {
             color: "var(--ink-2)",
             textWrap: "pretty" as const,
           }}
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, delay: 0.25, ease }}
         >
-          A bridge to mentorship — through AI, podcast stories, and real human guides.
-        </p>
+          A bridge to mentorship. Through AI, podcast stories, and real human guides.
+        </motion.p>
 
         {/* CTA row */}
-        <div className="mt-9 sm:mt-11 flex flex-col sm:flex-row sm:flex-wrap sm:items-center gap-3 sm:gap-4">
+        <motion.div
+          className="mt-9 sm:mt-11 flex flex-col sm:flex-row sm:flex-wrap sm:items-center gap-3 sm:gap-4"
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.4, ease }}
+        >
           <a
             href="#stages"
-            className="inline-flex items-center justify-center sm:justify-start gap-2.5 font-medium"
+            className="inline-flex items-center justify-center sm:justify-start gap-2.5 font-medium hover:gap-3 transition-all duration-200"
             style={{
               padding: "16px 26px",
               borderRadius: 999,
@@ -101,7 +118,7 @@ function Hero() {
           >
             See what we offer
           </a>
-        </div>
+        </motion.div>
 
         {/* Three product surfaces */}
         <div
@@ -111,36 +128,35 @@ function Hero() {
           {products.map((p, i) => {
             const isNotLast = i < products.length - 1;
             return (
-            <div
-              key={p.label}
-              className={`flex items-center gap-3.5 py-5 px-1 md:px-6 md:py-7 ${isNotLast ? "border-b md:border-b-0 md:border-r" : ""}`}
-              style={{
-                borderColor: "var(--line)",
-              }}
-            >
-              <span
-                className="inline-flex items-center justify-center shrink-0"
-                style={{
-                  width: 36,
-                  height: 36,
-                  borderRadius: 10,
-                  background: "var(--paper)",
-                  color: p.color,
-                  border: "1px solid var(--line)",
-                }}
+              <motion.div
+                key={p.label}
+                className={`flex items-center gap-3.5 py-5 px-1 md:px-6 md:py-7 ${isNotLast ? "border-b md:border-b-0 md:border-r" : ""}`}
+                style={{ borderColor: "var(--line)" }}
+                initial={{ opacity: 0, y: 14 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ duration: 0.55, delay: 0.55 + i * 0.1, ease }}
               >
-                <p.Icon size={18} strokeWidth={1.6} />
-              </span>
-              <div className="min-w-0">
-                <div
-                  className="font-semibold"
-                  style={{ fontSize: 14, color: "var(--ink)" }}
+                <span
+                  className="inline-flex items-center justify-center shrink-0"
+                  style={{
+                    width: 36,
+                    height: 36,
+                    borderRadius: 10,
+                    background: "var(--paper)",
+                    color: p.color,
+                    border: "1px solid var(--line)",
+                  }}
                 >
-                  {p.label}
+                  <p.Icon size={18} strokeWidth={1.6} />
+                </span>
+                <div className="min-w-0">
+                  <div className="font-semibold" style={{ fontSize: 14, color: "var(--ink)" }}>
+                    {p.label}
+                  </div>
+                  <div style={{ fontSize: 13, color: "var(--ink-3)" }}>{p.desc}</div>
                 </div>
-                <div style={{ fontSize: 13, color: "var(--ink-3)" }}>{p.desc}</div>
-              </div>
-            </div>
+              </motion.div>
             );
           })}
         </div>
