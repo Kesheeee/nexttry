@@ -42,7 +42,7 @@ export const metadata: Metadata = {
     template: "NextTry · %s",
   },
   description:
-    "Mentorship for every chapter of life. Through AI conversations, real podcast stories, and a human community.",
+    "Mentorship for every chapter of life. From AI to a real human guide.",
   openGraph: {
     title: "NextTry",
     siteName: "NextTry",
