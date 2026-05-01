@@ -12,10 +12,56 @@ interface Contact2Props {
 
 function ContactForm() {
   const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [errorMsg, setErrorMsg] = useState<string | null>(null);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setSubmitted(true);
+    if (submitting) return;
+    setErrorMsg(null);
+    setSubmitting(true);
+
+    const fd = new FormData(e.currentTarget);
+    const firstname = (fd.get("firstname") as string)?.trim() || "";
+    const lastname = (fd.get("lastname") as string)?.trim() || "";
+    const email = (fd.get("email") as string)?.trim() || "";
+    const source = (fd.get("source") as string)?.trim() || "";
+    const message = (fd.get("message") as string)?.trim() || "";
+
+    const name = [firstname, lastname].filter(Boolean).join(" ") || firstname;
+
+    if (!name || !email || message.length < 10) {
+      setErrorMsg("Please fill in your name, email, and a message of at least 10 characters.");
+      setSubmitting(false);
+      return;
+    }
+
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name,
+          email,
+          subject: source || undefined,
+          message,
+        }),
+      });
+
+      if (!res.ok) {
+        const data = await res.json().catch(() => null);
+        const msg = data?.error?.message || "Something went wrong. Please try again.";
+        setErrorMsg(msg);
+        setSubmitting(false);
+        return;
+      }
+
+      setSubmitted(true);
+    } catch {
+      setErrorMsg("Network error. Please check your connection and try again.");
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (
@@ -111,11 +157,17 @@ function ContactForm() {
               />
             </div>
 
+            {errorMsg && (
+              <p className="text-sm text-destructive" role="alert">
+                {errorMsg}
+              </p>
+            )}
             <button
               type="submit"
-              className="mt-2 w-32 rounded-full bg-primary text-primary-foreground py-3 text-sm font-semibold hover:bg-primary/90 active:scale-[0.97] transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
+              disabled={submitting}
+              className="mt-2 w-32 rounded-full bg-primary text-primary-foreground py-3 text-sm font-semibold hover:bg-primary/90 active:scale-[0.97] transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 disabled:opacity-60 disabled:cursor-not-allowed"
             >
-              Submit
+              {submitting ? "Sending…" : "Submit"}
             </button>
           </motion.form>
         )}
