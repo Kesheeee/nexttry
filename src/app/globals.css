@@ -284,3 +284,59 @@
     }
   }
 }
+
+/* ─────────────────────────────────────────────────────────────
+   nSpace scope — palette + utilities for /nspace/* routes only
+   Wrap nSpace pages in <div class="nspace-app">
+───────────────────────────────────────────────────────────── */
+.nspace-app {
+  /* Override Tailwind theme color tokens within this scope */
+  --color-background: #ede7da;
+  --color-foreground: #1a1a1a;
+  --color-card: #f5f0e4;
+  --color-border: #d8d1bf;
+  --color-muted: #e6dfce;
+  --color-muted-foreground: #a6a6a6;
+  --color-primary: #1a1a1a;
+  --color-primary-foreground: #ede7da;
+
+  /* nSpace raw palette (used directly via var(--cream) etc.) */
+  --cream: #ede7da;
+  --paper: #f5f0e4;
+  --warm:  #e6dfce;
+  --line:  #d8d1bf;
+  --ink:   #1a1a1a;
+  --mute:  #a6a6a6;
+  --flame: #f15a25;
+  --amber: #e8754a;
+  --sage:  #8fa896;
+
+  background: var(--cream);
+  color: var(--ink);
+  min-height: 100vh;
+}
+
+.nspace-app .serif        { font-family: var(--font-serif); font-style: italic; }
+.nspace-app .serif-roman  { font-family: var(--font-serif); font-style: normal; }
+.nspace-app .mono         { font-family: var(--font-mono); }
+
+.nspace-app .striped-wash {
+  background-color: #f3d4cc;
+  background-image: repeating-linear-gradient(
+    135deg,
+    #f3d4cc 0px,
+    #f3d4cc 12px,
+    #ecc5bb 12px,
+    #ecc5bb 24px
+  );
+}
+
+@keyframes nsSkeleton {
+  0%   { background-position: -400px 0; }
+  100% { background-position: 400px 0; }
+}
+.nspace-app .ns-skeleton {
+  background: linear-gradient(90deg, var(--warm) 0%, var(--paper) 50%, var(--warm) 100%);
+  background-size: 800px 100%;
+  animation: nsSkeleton 1.4s ease-in-out infinite;
+}

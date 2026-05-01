@@ -27,8 +27,8 @@ export const PRODUCTS: Record<ProductId, {
     cta: "Try nCall",
     icon: "spark",
     color: "indigo",
-    href: "https://ncall-nexttry.com",
-    external: true,
+    href: "/ncall",
+    external: false,
   },
   podcast: {
     name: "The Fourth Relationship",
@@ -47,7 +47,7 @@ export const PRODUCTS: Record<ProductId, {
     cta: "Explore nSpace",
     icon: "users",
     color: "teal",
-    href: "/explore/programs",
+    href: "/nspace",
   },
 };
 
