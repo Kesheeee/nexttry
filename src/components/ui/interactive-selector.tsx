@@ -178,7 +178,7 @@ export function InteractiveSelector() {
           {/* Right: tailored content */}
           <AnimatePresence mode="wait">
           <motion.div
-            key={active.id}
+            key={active}
             className="relative overflow-hidden flex flex-col"
             style={{
               border: "1px solid var(--line)",
