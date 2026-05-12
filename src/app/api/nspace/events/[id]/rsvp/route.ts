@@ -44,10 +44,8 @@ export async function POST(
 
     const supabase = createAdminClient();
 
-    // Rate limit: 20 rsvp writes / hour per user
-    const forwarded = req.headers.get("x-forwarded-for");
-    const ip = forwarded ? forwarded.split(",")[0].trim() : "unknown";
-    const rlKey = `events_rsvp:${me}:${ip}`;
+    // Rate limit: 20 rsvp writes / hour per user.
+    // checkRateLimit piggybacks on the table's created_at — no Redis needed.
     const rl = await checkRateLimit(
       supabase,
       "nspace_event_rsvps",
@@ -56,9 +54,6 @@ export async function POST(
       20,
       60 * 60
     );
-    // We pass rlKey for traceability but checkRateLimit uses the table-level
-    // count pattern from the existing codebase (no Redis).
-    void rlKey;
     if (!rl.ok) {
       return NextResponse.json(
         {
