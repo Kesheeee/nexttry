@@ -40,7 +40,7 @@ export async function GET(req: Request) {
           price_cents,
           venue:nspace_venues ( id, name, neighborhood, address )
         ),
-        rsvp_count:nspace_event_rsvps ( count )
+        confirmed_rsvps:nspace_event_rsvps ( id, status )
       `)
       .eq("status", "scheduled")
       .gte("starts_at", from)
@@ -55,14 +55,15 @@ export async function GET(req: Request) {
       );
     }
 
-    // Supabase returns the count aggregate as an array with a count property;
-    // flatten it to a plain number.
-    const events = (data ?? []).map((row) => ({
-      ...row,
-      rsvp_count: Array.isArray(row.rsvp_count)
-        ? (row.rsvp_count as { count: number }[])[0]?.count ?? 0
-        : 0,
-    }));
+    // Flatten: count only confirmed RSVPs and drop the raw rows from the response.
+    const events = (data ?? []).map((row) => {
+      const rsvps = Array.isArray(row.confirmed_rsvps)
+        ? (row.confirmed_rsvps as { id: string; status: string }[])
+        : [];
+      const { confirmed_rsvps: _dropped, ...rest } = row;
+      void _dropped;
+      return { ...rest, rsvp_count: rsvps.filter((r) => r.status === "confirmed").length };
+    });
 
     return NextResponse.json({ data: events });
   } catch (err) {
