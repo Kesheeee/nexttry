@@ -56,14 +56,11 @@ export async function GET(req: Request) {
     }
 
     // Flatten: count only confirmed RSVPs and drop the raw rows from the response.
-    const events = (data ?? []).map((row) => {
-      const rsvps = Array.isArray(row.confirmed_rsvps)
-        ? (row.confirmed_rsvps as { id: string; status: string }[])
-        : [];
-      const { confirmed_rsvps: _dropped, ...rest } = row;
-      void _dropped;
-      return { ...rest, rsvp_count: rsvps.filter((r) => r.status === "confirmed").length };
-    });
+    const events = (data ?? []).map(({ confirmed_rsvps, ...rest }) => ({
+      ...rest,
+      rsvp_count: (confirmed_rsvps as { id: string; status: string }[] | null ?? [])
+        .filter((r) => r.status === "confirmed").length,
+    }));
 
     return NextResponse.json({ data: events });
   } catch (err) {
